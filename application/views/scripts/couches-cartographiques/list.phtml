@@ -1,0 +1,161 @@
+<?php if($this->key_ign = null) : ?>
+
+    <div class='well well-large text-center'>
+        <p class='lead'>La clé IGN n'est pas renseignée.</p>
+        <p>Vous devez placer la clé IGN dans votre secret.ini comme ceci : </p>
+        <pre>ign.key = XXXXXXXXXXXX</pre>
+    </div>
+
+<?php elseif(count($this->couches_cartographiques) == 0) : ?>
+
+    <p class='text-right'><a class='btn' href='<?php echo $this->url(array('controller' => 'couches-cartographiques', 'action' => 'add'), null, true) ?>'>Ajouter une couche</a></p>
+
+    <div class='well well-large text-center'>
+        <p class='lead'>Il n'y a pas de couche cartographique.</p>
+        <p><a href='<?php echo $this->url(array('action' => 'add')) ?>' class='btn btn-large'>Ajouter une couche cartographique</a></p>
+    </div>
+
+<?php else : ?>
+
+    <p class='text-right'><a class='btn' href='<?php echo $this->url(array('controller' => 'couches-cartographiques', 'action' => 'add'), null, true) ?>'>Ajouter une couche</a></p>
+
+    <div id='mapGeoportail'  style="height: 350px; max-height: 350px;"></div>
+    
+    <script src="/js/sdk-2d/GpSDK2D-src.js"></script>
+    <link rel="stylesheet" href="/js/sdk-2d/GpSDK2D.css" />
+    <!-- Déplacement du bouton FullScreen (sinon supperposé avec le gestionnaire de couches) -->
+    <style>
+    .ol-full-screen {right:9px; top:49px}
+    </style>
+    <script>
+        //
+    var map = Gp.Map.load(
+    "mapGeoportail", // identifiant du conteneur HTML
+        {
+             // Geoportal access key obtained here : http://professionnels.ign.fr/ign/contrats
+             configUrl : "/js/sdk-2d/autoconf-https.json",
+             // niveau de zoom de la carte (de 1 à 21)
+             zoom : 14,
+             // centrage de la carte
+             center : {
+                 geolocate : true
+                },
+             layersOptions : {
+                // COUCHE DE BASE
+                "ORTHOIMAGERY.ORTHOPHOTOS": {},
+                // Autres couches à afficher rajoutées par l'utilisateur
+                    <?php foreach($this->couches_cartographiques as $couche_cartographique) : ?>
+                            <?php if ($couche_cartographique['URL_COUCHECARTO'] != null) : ?>
+                                <?php if ($couche_cartographique['TYPE_COUCHECARTO'] == 'WMS') : ?>
+                                    "<?php echo $couche_cartographique['NOM_COUCHECARTO'] ?>" : {
+                                            title : "<?php echo $couche_cartographique['NOM_COUCHECARTO'] ?>",
+                                            format : "<?php echo $couche_cartographique['TYPE_COUCHECARTO'] ?>",
+                                            version : "1.3.0",
+                                            url : "<?php echo $couche_cartographique['URL_COUCHECARTO'] ?>",
+                                            layers : ["<?php echo $couche_cartographique['LAYERS_COUCHECARTO'] ?>"],
+                                            outputFormat : "<?php echo $couche_cartographique['FORMAT_COUCHECARTO'] ?>",
+                                            tiled : true,
+                                            visibility : <?php if ($couche_cartographique['TRANSPARENT_COUCHECARTO'] == 0) : ?>false<?php else : ?>true<?php endif ?>,
+                                            queryable : true,
+                                            gfiFormat : "text/html",
+                                            },
+                                <?php elseif ($couche_cartographique['TYPE_COUCHECARTO'] == 'WFS') : ?>
+                                    "<?php echo $couche_cartographique['NOM_COUCHECARTO'] ?>" : {
+                                            title : "<?php echo $couche_cartographique['NOM_COUCHECARTO'] ?>",
+                                            format : "<?php echo $couche_cartographique['TYPE_COUCHECARTO'] ?>",
+                                            url : "<?php echo $couche_cartographique['URL_COUCHECARTO'] ?>",
+                                            typeNames : "<?php echo $couche_cartographique['LAYERS_COUCHECARTO'] ?>",
+                                            version : "2.0.0",
+                                            //maxFeatures : 200,
+                                            visibility : <?php if ($couche_cartographique['TRANSPARENT_COUCHECARTO'] == 0) : ?>false<?php else : ?>true<?php endif ?>,
+                                            queryable : true,
+                                            },
+                                <?php endif ?>
+                            <?php else : ?>
+                                "<?php echo $couche_cartographique['LAYERS_COUCHECARTO'] ?>" : {
+                                    visibility : <?php if ($couche_cartographique['TRANSPARENT_COUCHECARTO'] == 0) : ?>false<?php else : ?>true<?php endif ?>
+                                    },
+                            <?php endif ?>
+                        <?php endforeach ?>
+                },
+                // Outils additionnels à proposer sur la carte
+                controlsOptions : {
+                    "layerSwitcher" : {},
+                    "search" : {
+                        //maximised : true
+                    },
+                    //"overview" : {},
+                    "orientation" : {},
+                    "graphicscale" : {},
+                    "mouseposition" : {},
+                    //"isocurve" : {},
+                    "graticule" : {},
+                    //"layerimport" : {},
+                    "length" : {},
+                    "area" : {},
+                    "azimuth" : {},
+                    "elevationpath" : {},
+                    "getfeatureinfo" : {
+                        layers : [
+                            {
+                                "GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN-EXPRESS.STANDARD" : {},
+                            }
+                        ],
+                        options : {
+                        auto : true,
+                        active: true,
+                        defaultInfoFormat: "text/html",
+                        defaultEvent: "singleclick",
+                        cursorStyle: "pointer",
+                        },
+                    },
+                },
+                // Repères visuels
+                markersOptions : [{
+                    content : "<h1>SDIS DE L'ESSONNE</h1><br/><p>1 Rond point de l’Espace, BP 218, 91007 EVRY-COURCOURONNES CEDEX</p><br/><p><a href='http://www.sdis-91.fr/' target='_blank'>Site Web</a></p>"
+                }],
+                // Appel de la fonction après le chargement de la carte
+                mapEventsOptions : {
+                    "mapLoaded" : afterInitMap
+                },
+        }
+    );
+    // Affichage de la version du SDK et de sa date de création
+    var infoDiv = document.getElementById("info");
+    infoDiv.innerHTML = "<h6><p><b><i> SDK version " + Gp.sdkVersion + " (" + Gp.sdkDate + ")</b></i></p></h6>";
+    // Ajout du bouton FullScreen sur la carte
+    function afterInitMap () {
+        var fsControl = new ol.control.FullScreen({});
+        map.getLibMap().addControl(fsControl);
+    };
+    </script>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Nom de la couche</th>
+                <th>Visible</th>
+                <th>Nom de la couche dans le flux</th>
+                <th>URL</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($this->couches_cartographiques as $couche_cartographique) : ?>
+            <tr>
+                <td><?php echo $couche_cartographique['TYPE_COUCHECARTO'] ?></td>
+                <td><?php echo $couche_cartographique['NOM_COUCHECARTO'].(($couche_cartographique['ISBASELAYER_COUCHECARTO']) ? " (couche de base)" : "") ?></td>
+                <td><?php if ($couche_cartographique['TRANSPARENT_COUCHECARTO'] == 0) : ?>non<?php else : ?>oui<?php endif ?></td>
+                <td><?php echo $couche_cartographique['LAYERS_COUCHECARTO'] ?></td>
+                <td><?php echo $couche_cartographique['URL_COUCHECARTO'] ?></td>
+                <td>
+                    <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $couche_cartographique['ID_COUCHECARTO'])) ?>">Éditer la couche</a><br/>
+                    <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $couche_cartographique['ID_COUCHECARTO'])) ?>">Supprimer</a>
+                </td>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+
+<?php endif ?>

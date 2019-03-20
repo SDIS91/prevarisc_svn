@@ -16,7 +16,7 @@
             </select>
         </dd>
                 
-                <?php if (isset($this->key_ign)): ?>
+                <?php if ($this->key_ign != null): ?>
                 <dt></dt>
         <dd>
                     <div class='btn-group' style='margin-bottom:10px;'>
@@ -38,6 +38,7 @@
                                      if ($layer.find('Server:first').attr('service') !== 'OGC:'+type) return ;
                                      var url = $layer.find("gpp\\:Key").text() ? $layer.find("gpp\\:Key").text() : $layer.find("Key").text();
                                      $menu.append('<li class="ignLayer" url="'+url+'" name="'+$layer.find('Name:first').text()+'"><a href="#"><b>'+$layer.find('Title:first').text()+'<font color="blue"> => </b></font><i>'+$layer.find('Name:first').text()+'</i></a></li>');
+                                     //alert($layer.find('Title:first').text()+" : "+$layer.find('Name:first').text());
                                   });
                                   $('.ignLayer').click(function(e){
                                      e.preventDefault();

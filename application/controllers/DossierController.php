@@ -132,6 +132,15 @@ private $listeChamps = array(
 //A supprimer
         //A supprimer
             "77"=> array("OBJET", "type"),
+//’Suivi Préfecture
+        //Courrier de relance
+            "78"=> array("DATEINSERT", "OBJET", "OBSERVATION", "DATESIGN", "type"),
+        //Courrier de réponse
+            "79"=> array("DATEINSERT", "OBJET", "OBSERVATION", "DATESIGN", "DATEPREF", "DEMANDEUR", "DATEREP", "type"),
+        //Courrier de mise en demeure
+            "80"=> array("DATEINSERT", "OBJET", "OBSERVATION", "DATESIGN", "type"),
+        //Arrêté préfectoral de fermeture
+            "81"=> array("DATEINSERT", "OBJET", "OBSERVATION", "DATESIGN", "type"),
 );
 
     public function init()

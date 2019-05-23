@@ -14,52 +14,52 @@
 -- Observations autres 
 -- Historique des visites depuis 1er avis def de la série **
 -- Date première SCD en avis défavorable)**
-SELECT 	
-		DER_FICHE_ETB.ID_ETB,
-		DER_FICHE_ETB.LAST_ID_ETAB_INFO,
+SELECT  
+        DER_FICHE_ETB.ID_ETB,
+        DER_FICHE_ETB.LAST_ID_ETAB_INFO,
         -- NUMERO ERP --
         ETB.NUMEROID_ETABLISSEMENT,
         -- GENRE --
         genre.LIBELLE_GENRE,
         -- PERIODICITE --
-		ETB_INFO.PERIODICITE_ETABLISSEMENTINFORMATIONS as PERIODICITE,
+        ETB_INFO.PERIODICITE_ETABLISSEMENTINFORMATIONS as PERIODICITE,
         -- NOM ETABLISSEMENT --
         ETB_INFO.LIBELLE_ETABLISSEMENTINFORMATIONS as NOM_ETB,
         -- HEBERGEMENT --
         if(ETB_INFO.LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS=1,"OUI","NON") as LAS,
         -- CLASSEMENT --
-		coalesce (libelle_classe,concat (libelle_type, " ", libelle_categorie)) as CLASSEMENT,
+        coalesce (libelle_classe,concat (libelle_type, " ", libelle_categorie)) as CLASSEMENT,
         -- ADRESSE --
-        CASE -- boutique --
-			WHEN genre.ID_GENRE=3 then ADRESSE_PERE.Adresse
-			Else ADRESSE_FILS.adresse
-		END AS ADRESSE,
+        (CASE -- boutique --
+            WHEN genre.ID_GENRE=3 then ADRESSE_PERE.Adresse
+            Else ADRESSE_FILS.adresse
+        END) AS ADRESSE,
         -- COMMUNE --
-        CASE -- boutique --
-			WHEN genre.ID_GENRE=3 then ADRESSE_PERE.COMMUNE_PERE
-			Else ADRESSE_FILS.COMMUNE_FILS
-		END AS COMMUNE,
+        (CASE -- boutique --
+            WHEN genre.ID_GENRE=3 then ADRESSE_PERE.COMMUNE_PERE
+            Else ADRESSE_FILS.COMMUNE_FILS
+        END) AS COMMUNE,
          -- COMMUNE --
-        CASE -- boutique --
-			WHEN genre.ID_GENRE=3 then ADRESSE_PERE.ARROND_PERE
-			Else ADRESSE_FILS.ARROND_FILS
-		END AS ARRONDISSEMENT,
+        (CASE -- boutique --
+            WHEN genre.ID_GENRE=3 then ADRESSE_PERE.ARROND_PERE
+            Else ADRESSE_FILS.ARROND_FILS
+        END) AS ARRONDISSEMENT,
         -- CAUSES AVIS DEF --
         DERNIER_DOSSIER_DEF.ANOMALIE_DOSSIER,
         -- AUTRES OBSERVATION --
         DERNIER_DOSSIER_DEF.OBSERVATION_DOSSIER as AUTRES_OBSERVATIONS,
         -- DATE PREMIERS AVIS DEF DE LA SERIE --
         Date_Origine_Avis_Def
-		-- HISTORIQUE --
-		NATURE,
-		HISTORIQUE.ID_DOSS,
-		HISTORIQUE.TYPEDOSSIER,
-		HISTORIQUE.DATE_REF,
-		HISTORIQUE.AVIS_DEF
+        -- HISTORIQUE --
+        NATURE,
+        HISTORIQUE.ID_DOSS,
+        HISTORIQUE.TYPEDOSSIER,
+        HISTORIQUE.DATE_REF,
+        HISTORIQUE.AVIS_DEF
         
 FROM 
  (select 
-	ID_ETABLISSEMENT as ID_ETB,
+    ID_ETABLISSEMENT as ID_ETB,
     max(ID_ETABLISSEMENTINFORMATIONS) as LAST_ID_ETAB_INFO
     from etablissementinformations 
     group by ID_ETABLISSEMENT order by id_etablissement) as DER_FICHE_ETB
@@ -71,46 +71,46 @@ JOIN genre on ETB_INFO.ID_GENRE=genre.id_genre
 left JOIN etablissementlie on etablissementlie.ID_FILS_ETABLISSEMENT=DER_FICHE_ETB.ID_ETB
 
 left JOIN (select ID_ETABLISSEMENT, ARROND.COMMUNE as COMMUNE_FILS,ARROND.ARRONDISSEMENT AS ARROND_FILS,
-		CASE
-			When adresserue.LIBELLE_RUE = "VOIE @ VOIE INCONNUE" then trim(concat("VI - " ,etablissementadresse.NUMERO_ADRESSE," " , etablissementadresse.complement_adresse))
-			Else trim(concat(etablissementadresse.NUMERO_ADRESSE," " , adresserue.LIBELLE_RUE))
-		END as Adresse 
-		from etablissementadresse
-		join adresserue on adresserue.id_rue=etablissementadresse.ID_RUE
-		join (SELECT 
-				libelle_groupement as ARRONDISSEMENT,adressecommune.LIBELLE_COMMUNE as COMMUNE, adressecommune.NUMINSEE_COMMUNE as INSEE
-				FROM groupement 
-			JOIN groupementcommune on groupementcommune.id_groupement=groupement.id_groupement
-			JOIN adressecommune on adressecommune.NUMINSEE_COMMUNE=groupementcommune.NUMINSEE_COMMUNE
-			where id_groupementtype=2) as ARROND on ARROND.INSEE=adresserue.NUMINSEE_COMMUNE) AS ADRESSE_FILS 
+        CASE
+            When adresserue.LIBELLE_RUE = "VOIE @ VOIE INCONNUE" then trim(concat("VI - " ,etablissementadresse.NUMERO_ADRESSE," " , etablissementadresse.complement_adresse))
+            Else trim(concat(etablissementadresse.NUMERO_ADRESSE," " , adresserue.LIBELLE_RUE))
+        END as Adresse 
+        from etablissementadresse
+        join adresserue on adresserue.id_rue=etablissementadresse.ID_RUE
+        join (SELECT 
+                libelle_groupement as ARRONDISSEMENT,adressecommune.LIBELLE_COMMUNE as COMMUNE, adressecommune.NUMINSEE_COMMUNE as INSEE
+                FROM groupement 
+            JOIN groupementcommune on groupementcommune.id_groupement=groupement.id_groupement
+            JOIN adressecommune on adressecommune.NUMINSEE_COMMUNE=groupementcommune.NUMINSEE_COMMUNE
+            where id_groupementtype=2) as ARROND on ARROND.INSEE=adresserue.NUMINSEE_COMMUNE) AS ADRESSE_FILS 
         on ADRESSE_FILS.id_etablissement=DER_FICHE_ETB.ID_ETB
 
 left JOIN (select ID_ETABLISSEMENT, ARROND.COMMUNE as COMMUNE_PERE,ARROND.ARRONDISSEMENT AS ARROND_PERE,
-		CASE
-			When adresserue.LIBELLE_RUE = "VOIE @ VOIE INCONNUE" then trim(concat("VI - " ,etablissementadresse.NUMERO_ADRESSE," " , etablissementadresse.complement_adresse))
-			Else trim(concat(etablissementadresse.NUMERO_ADRESSE," " , adresserue.LIBELLE_RUE))
-		END as Adresse 
-		from etablissementadresse
-		join adresserue on adresserue.id_rue=etablissementadresse.ID_RUE
-		join (SELECT 
-				libelle_groupement as ARRONDISSEMENT,adressecommune.LIBELLE_COMMUNE as COMMUNE, adressecommune.NUMINSEE_COMMUNE as INSEE
-				FROM groupement 
-			JOIN groupementcommune on groupementcommune.id_groupement=groupement.id_groupement
-			JOIN adressecommune on adressecommune.NUMINSEE_COMMUNE=groupementcommune.NUMINSEE_COMMUNE
-			where id_groupementtype=2) as ARROND on ARROND.INSEE=adresserue.NUMINSEE_COMMUNE) AS ADRESSE_PERE
+        CASE
+            When adresserue.LIBELLE_RUE = "VOIE @ VOIE INCONNUE" then trim(concat("VI - " ,etablissementadresse.NUMERO_ADRESSE," " , etablissementadresse.complement_adresse))
+            Else trim(concat(etablissementadresse.NUMERO_ADRESSE," " , adresserue.LIBELLE_RUE))
+        END as Adresse 
+        from etablissementadresse
+        join adresserue on adresserue.id_rue=etablissementadresse.ID_RUE
+        join (SELECT 
+                libelle_groupement as ARRONDISSEMENT,adressecommune.LIBELLE_COMMUNE as COMMUNE, adressecommune.NUMINSEE_COMMUNE as INSEE
+                FROM groupement 
+            JOIN groupementcommune on groupementcommune.id_groupement=groupement.id_groupement
+            JOIN adressecommune on adressecommune.NUMINSEE_COMMUNE=groupementcommune.NUMINSEE_COMMUNE
+            where id_groupementtype=2) as ARROND on ARROND.INSEE=adresserue.NUMINSEE_COMMUNE) AS ADRESSE_PERE
         on ADRESSE_PERE.id_etablissement=etablissementlie.ID_ETABLISSEMENT
 
 -- HISTORIQUE --
 
 left JOIN((SELECT 
-	'SUIVI PREFECTORAL' as NATURE,
+    'SUIVI PREFECTORAL' as NATURE,
     etablissementdossier.ID_DOSSIER as ID_DOSS,
     etablissementdossier.ID_ETABLISSEMENT as HIST_ID_ETB,
-	dossiernatureliste.LIBELLE_DOSSIERNATURE as TYPEDOSSIER,
+    dossiernatureliste.LIBELLE_DOSSIERNATURE as TYPEDOSSIER,
     CASE
-		when dossiernatureliste.ID_DOSSIERNATURE=79 then  ifnull(date_format(dossier.DATEREP_DOSSIER,"%d / %m / %Y"),"indéterminée")
+        when dossiernatureliste.ID_DOSSIERNATURE=79 then  ifnull(date_format(dossier.DATEREP_DOSSIER,"%d / %m / %Y"),"indéterminée")
         ELse  ifnull(date_format(dossier.datesign_dossier,"%d / %m / %Y"),"indéterminée")
-	END as DATE_REF,
+    END as DATE_REF,
     dossier.OBJET_DOSSIER as AVIS_DEF
 
 
@@ -126,12 +126,12 @@ where dossier.type_dossier=8)
  union 
  
 (SELECT 
-	'VISITE' as NATURE,
-	etablissementdossier.ID_DOSSIER as ID_DOSS,
+    'VISITE' as NATURE,
+    etablissementdossier.ID_DOSSIER as ID_DOSS,
     etablissementdossier.ID_ETABLISSEMENT as HIST_ID_ETB,
-		dossiernatureliste.LIBELLE_DOSSIERNATURE as TYPEDOSSIER,
+        dossiernatureliste.LIBELLE_DOSSIERNATURE as TYPEDOSSIER,
     ifnull(date_format(dossier.DATEVISITE_DOSSIER,"%d / %m / %Y"),"indéterminée") as DATEREF,
-	LIBELLE_AVIS as AVIS_DEF
+    LIBELLE_AVIS as AVIS_DEF
 
 FROM prevarisc.dossiernature
 join dossiernatureliste on dossiernature.ID_NATURE=dossiernatureliste.ID_DOSSIERNATURE
@@ -161,20 +161,20 @@ etablissementdossier.ID_ETABLISSEMENT as ID_FIRST_DEF,
 min(etablissementdossier.id_dossier)
 
 from 
-	(	select max(premier_avis_def) as ID_FIRST_AVT_DEF,
-		FAD_ID_ETB 
-		from (	SELECT 
-					dossier.id_dossier as premier_avis_def,
-					etablissementdossier.ID_ETABLISSEMENT as FAD_ID_ETB
-				FROM prevarisc.dossier 
-				join etablissementdossier on dossier.ID_DOSSIER=etablissementdossier.ID_DOSSIER
-				join dossiertype on dossier.TYPE_DOSSIER=dossiertype.ID_DOSSIERTYPE
-				join etablissement on etablissement.ID_ETABLISSEMENT=etablissementdossier.ID_ETABLISSEMENT
-				WHERE
-					dossiertype.ID_DOSSIERTYPE=2 -- visite de commission--
-					and ifnull(dossier.AVIS_DOSSIER_COMMISSION,0)<>2 -- pas avis défavorable
-					and dossier.id_dossier<etablissement.ID_DOSSIER_DONNANT_AVIS
-				order by etablissementdossier.ID_ETABLISSEMENT asc, dossier.id_dossier desc) as GRP group by FAD_ID_ETB ) AS LAST_BEFORE_DEF
+    (   select max(premier_avis_def) as ID_FIRST_AVT_DEF,
+        FAD_ID_ETB 
+        from (  SELECT 
+                    dossier.id_dossier as premier_avis_def,
+                    etablissementdossier.ID_ETABLISSEMENT as FAD_ID_ETB
+                FROM prevarisc.dossier 
+                join etablissementdossier on dossier.ID_DOSSIER=etablissementdossier.ID_DOSSIER
+                join dossiertype on dossier.TYPE_DOSSIER=dossiertype.ID_DOSSIERTYPE
+                join etablissement on etablissement.ID_ETABLISSEMENT=etablissementdossier.ID_ETABLISSEMENT
+                WHERE
+                    dossiertype.ID_DOSSIERTYPE=2 -- visite de commission--
+                    and ifnull(dossier.AVIS_DOSSIER_COMMISSION,0)<>2 -- pas avis défavorable
+                    and dossier.id_dossier<etablissement.ID_DOSSIER_DONNANT_AVIS
+                order by etablissementdossier.ID_ETABLISSEMENT asc, dossier.id_dossier desc) as GRP group by FAD_ID_ETB ) AS LAST_BEFORE_DEF
                 
 
 join etablissementdossier on LAST_BEFORE_DEF.FAD_ID_ETB=etablissementdossier.ID_ETABLISSEMENT

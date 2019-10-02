@@ -17,7 +17,10 @@
 
 // Retrouver l'id de l'utilisateur par la session et l'ajouter a l'annee en cours
 $user = date('y');
-$user .= (strlen(strval($_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR'])) < 2 ? "0".$_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR'] : $_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR']);
+$user_id = strlen(strval($_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR']));
+//$increment = ($user_id > 2 ? '00' : '000');
+$user .= ($user_id < 2 ? "0".$_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR'] : $_SESSION['Zend_Auth']['storage']['ID_UTILISATEUR']);
+$position = strlen($user);
 
 // Retrouver la derniere entree de l'utilisateur et l'incrementer pour renseigner l'intitule
 $mysqli = new mysqli("localhost", "prevarisc", "prevarisc", "prevarisc");
@@ -27,11 +30,12 @@ $select_title = $mysqli->query(
     FROM 
         piecejointe 
     WHERE 
-        SUBSTRING(NOM_PIECEJOINTE, 1, 4) = '".$user."'"
+        SUBSTRING(NOM_PIECEJOINTE, 1, " . $position . ") = '" . $user."'"
     );
 $result_title = $select_title -> fetch_assoc();
+
 if (empty($result_title['MAX(NOM_PIECEJOINTE)'])) {
-    $first = "0001";
+    $first = '0001';
     $user .= strval($first);
 } else {
     $user = $result_title['MAX(NOM_PIECEJOINTE)'] + 1;

@@ -2380,11 +2380,11 @@ private $listeChamps = array(
         $nouvellePJ = $DBpieceJointe->createRow();
         $nouvellePJ->ID_PIECEJOINTE = $this->view->idPieceJointe;
         // Modifications by George : intitule et descriptif personnalises de la piece jointe
-        $user = (strlen($this->view->idUser) < 2 ? "0".$this->view->idUser : $this->view->idUser); // (G) retrouver l'id de l'utilisateur
-        $year_user = $dateDuJour->get(Zend_Date::YEAR_SHORT).$user;
+        $user = (strlen($this -> view -> idUser) < 2 ? "0".$this -> view -> idUser : $this -> view -> idUser); // (G) retrouver l'id de l'utilisateur
+        $year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$user;
         // (G) Retrouver la derniere entree de l'utilisateur et l'incrementer pour renseigner l'intitule
-        $this->view->userPj = $DBpieceJointe->maxUserPieceJointe($year_user); //concatener l'annee et l'id utilisateur
-        if (empty($this->view->userPj)) {
+        $this -> view -> userPj = $DBpieceJointe -> maxUserPieceJointe($year_user, $user); //concatener l'annee et l'id utilisateur
+        if (empty($this -> view -> userPj)) {
             $first = "0001";
             $year_user .= strval($first);
         } else {
@@ -2399,8 +2399,8 @@ private $listeChamps = array(
             $year_user .= $increment;
         }
         //$nouvellePJ->NOM_PIECEJOINTE = substr(basename($this->view->fichierSelect), 0, strlen(basename($this->view->fichierSelect)) - 3);
-        $nouvellePJ->NOM_PIECEJOINTE = $year_user;
-        $nouvellePJ->EXTENSION_PIECEJOINTE = ".odt";
+        $nouvellePJ -> NOM_PIECEJOINTE = $year_user;
+        $nouvellePJ -> EXTENSION_PIECEJOINTE = ".odt";
 
         // (G) Récupération du type et de la nature du dossier
         $dbType = new Model_DbTable_DossierType();

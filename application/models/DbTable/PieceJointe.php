@@ -29,12 +29,12 @@
         
         // Added by George: pour l'intitule de la piece jointe
         // Increment de l'intitule de la pj
-        public function maxUserPieceJointe($year_user, $user)
+        public function maxUserPieceJointe($year_user, $userid)
         {
             //echo "les champs : ".$table.$champ.$identifiant."<br/>";
             $select = "SELECT MAX(NOM_PIECEJOINTE)
                     FROM piecejointe
-                    WHERE SUBSTRING(NOM_PIECEJOINTE, 1, " . $user . ") = '" . $year_user . "';";
+                    WHERE SUBSTRING(NOM_PIECEJOINTE, 1, $userid ) = '$year_user';";
             //echo $select;
             return $this -> getAdapter() -> fetchRow($select);
         }

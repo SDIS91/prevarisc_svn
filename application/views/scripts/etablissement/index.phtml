@@ -139,7 +139,7 @@
             <dl class='dl-horizontal'>
                 <!-- Effectif public -->
                 <?php if(in_array($this->etablissement['informations']['ID_GENRE'], array(2, 3, 5))) : ?>
-                <dt><?php echo ($this->etablissement['informations']['ID_TYPE'] = 16 ? 'Places de stationnement' : 'Public'); ?></dt>
+                <dt><?php echo ($this->etablissement['informations']['ID_TYPE'] == 16 ? 'Places de stationnement' : 'Public'); ?></dt>
                 <dd>
                     <p><?php echo $this->etablissement['informations']['EFFECTIFPUBLIC_ETABLISSEMENTINFORMATIONS'] ?></p>
                 </dd>

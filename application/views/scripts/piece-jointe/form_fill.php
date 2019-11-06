@@ -33,14 +33,12 @@ $select_title = $mysqli->query(
         SUBSTRING(NOM_PIECEJOINTE, 1, " . $position . ") = '" . $user."'"
     );
 $result_title = $select_title -> fetch_assoc();
-
-if (empty($result_title['MAX(NOM_PIECEJOINTE)'])) {
+if (is_null($result_title['MAX(NOM_PIECEJOINTE)'])) {
     $first = '0001';
     $user .= strval($first);
 } else {
     $user = $result_title['MAX(NOM_PIECEJOINTE)'] + 1;
 }
-
 // Retrouver le libelle et le type du dossier correspondant
 $id_dossier = $_POST['id'];
 $select_type = $mysqli->query(

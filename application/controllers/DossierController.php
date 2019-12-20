@@ -2385,7 +2385,7 @@ private $listeChamps = array(
         $userid = strlen($year_user);
         // (G) Retrouver la derniere entree de l'utilisateur et l'incrementer pour renseigner l'intitule
         $this -> view -> userPj = $DBpieceJointe -> maxUserPieceJointe($year_user, $userid); //concatener l'annee et l'id utilisateur
-        if (empty($this -> view -> userPj)) {
+        if (is_null($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'])) {
             $first = "0001";
             $year_user .= strval($first);
         } else {

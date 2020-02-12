@@ -53,7 +53,7 @@ $select_type = $mysqli->query(
     WHERE 
         dossier.ID_DOSSIER = '".$id_dossier."'");
 $result_type = $select_type -> fetch_assoc();
-$desc = utf8_decode($result_type['OBJET_DOSSIER']." ".$result_type['LIBELLE_DOSSIERTYPE']);
+$desc = $result_type['OBJET_DOSSIER']." ".$result_type['LIBELLE_DOSSIERTYPE'];
 
 // Retrouver nature du dossier correspondant
 $select_nat = $mysqli->query(
@@ -69,5 +69,3 @@ $select_nat = $mysqli->query(
         dossiernature.ID_DOSSIER = '".$id_dossier."'");
 $result_nat = $select_nat->fetch_assoc();
 $desc .= " ".$result_nat['LIBELLE_DOSSIERNATURE'];
-$desc = utf8_encode($desc);
-?>

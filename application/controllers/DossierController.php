@@ -2380,16 +2380,16 @@ private $listeChamps = array(
         $nouvellePJ = $DBpieceJointe->createRow();
         $nouvellePJ->ID_PIECEJOINTE = $this->view->idPieceJointe;
         // Modifications by George : intitule et descriptif personnalises de la piece jointe
-        $user = (strlen($this -> view -> idUser) < 2 ? "0".$this -> view -> idUser : $this -> view -> idUser); // (G) retrouver l'id de l'utilisateur
+        $user = (strlen($this -> view -> idUser) < 2 ? "0" . $this -> view -> idUser : $this -> view -> idUser); // (G) retrouver l'id de l'utilisateur
         $year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$user;
         $userid = strlen($year_user);
         // (G) Retrouver la derniere entree de l'utilisateur et l'incrementer pour renseigner l'intitule
         $this -> view -> userPj = $DBpieceJointe -> maxUserPieceJointe($year_user, $userid); //concatener l'annee et l'id utilisateur
         if (is_null($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'])) {
-            $first = "0001";
+            $first = '0001';
             $year_user .= strval($first);
         } else {
-            $increment = substr($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'], $userid, 4);
+            $increment = substr($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'], $userid);
             $increment++;
             if (strlen($increment) < 4) {
                 $zeros = 4 - strlen($increment);

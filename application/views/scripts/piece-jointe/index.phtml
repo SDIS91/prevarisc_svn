@@ -70,6 +70,21 @@
 						buttons: {
 							'Ajouter la pièce jointe': function() {
 								
+                                //*** add by Taoufik
+								//vérification du libellé et affichage d'un message d'erreur :
+								
+								if($("span.error").length > 0){
+									$("#nomFichier").css("border","");
+									$("span.error").remove();
+								}
+								
+								if($("#nomFichier").val().length == 0 ) {
+									$("#nomFichier").css("border","1px solid red");
+									$("#nomFichier").after('<span class="error">Libellé obligatoire</span>');
+									return false;
+								}
+								//**** fin add
+                                
 								// Envoi du formulaire dans form
 								$("#formUpload").submit();
 								

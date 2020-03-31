@@ -25,7 +25,7 @@ class PieceJointeController extends Zend_Controller_Action
             $this->view->identifiant = $this->_request->id;
             $this->view->pjcomm = $this->_request->pjcomm;
             $listePj = $DBused->affichagePieceJointe("dossierpj", "dossierpj.ID_DOSSIER", $this->_request->id);
-			$this->view->verrou = $this->_request->verrou;
+            $this->view->verrou = $this->_request->verrou;
         }
 
         // Cas établissement
@@ -116,6 +116,20 @@ class PieceJointeController extends Zend_Controller_Action
         // Placement
         $this->view->type = $this->_getParam('type');
         $this->view->identifiant = $this->_getParam('id');
+
+        //-------------------------//
+        //ajoute par Taoufik ***
+        // creation de la piece jointe !
+        $DBpj = new Model_DbTable_PieceJointe;
+        
+        /*$labelPJ = $DBpj->nouvellePieceJointe();
+        
+        $this->view->nomFichier = $labelPJ;*/
+        
+        $descPJ = $DBpj->descriptionPiece($this->_getParam('id'));
+        
+        $this->view->description = $descPJ;
+        // fin ajouter par Taoufik 
 
         // Ici suivant le type on change toutes les infos nécessaires pour lier aux différents établissements, dossiers
         if ($this->view->type == 'dossier') {
@@ -346,7 +360,7 @@ class PieceJointeController extends Zend_Controller_Action
                 
                 
                 if( file_exists($file_path) )           unlink($file_path);
-                if( file_exists($miniature_path) )	unlink($miniature_path);
+                if( file_exists($miniature_path) ) unlink($miniature_path);
                 $DBitem->delete("ID_PIECEJOINTE = " . (int) $this->_request->id_pj);
                 $pj->delete();
             }

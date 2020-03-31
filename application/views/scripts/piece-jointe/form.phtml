@@ -1,9 +1,9 @@
 <!-- added by george -->
 <style type='text/css'>
-    .dl-horizontal dt { white-space: normal; text-align: left; width: 300px; }
-    .dl-horizontal dd { margin-left: 300px; }
+	.dl-horizontal dt { white-space: normal; text-align: left; width: 300px; }
+	.dl-horizontal dd { margin-left: 300px; }
+	.error{ padding: 5px; color: red; }
 </style>
-<?php include 'form_fill.php'; ?>
 <!-- end of added by george -->
 <form method='post' id='formUpload' name='formUpload' enctype='multipart/form-data' action='/piece-jointe/add' target='hiddeniframe' >
 
@@ -24,10 +24,10 @@
 		<?php endif ?>
 		
 		<dt>Libellé de la pièce jointe (laissez vide pour conserver le nom par défaut)</dt>
-		<dd><input type='text' name='nomFichier' id='nomFichier' value="<?php echo $user; ?>" /></dd>
+		<dd><input type='text' name='nomFichier' id='nomFichier' value="" /></dd>
 		
 		<dt>Description</dt>
-		<dd><textarea name='descriptionFichier' id='descriptionFichier' cols='50' rows='4'><?php echo $desc; ?></textarea></dd>
+		<dd><textarea name='descriptionFichier' id='descriptionFichier' cols='50' rows='4'><?php echo $this->description; ?></textarea></dd>
 		
 		<?php if($this->type == 'dossier') : ?>
 			<dt>Entités avec lesquels vous souhaitez lier la pièce jointe<br/></dt>

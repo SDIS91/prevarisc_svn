@@ -18,8 +18,36 @@ class Model_DbTable_DossierAffectation extends Zend_Db_Table_Abstract
             ->join(array('dossType' => "dossiertype"), 'doss.TYPE_DOSSIER = dossType.ID_DOSSIERTYPE', 'LIBELLE_DOSSIERTYPE')
             ->joinLeft(array("e" => "etablissementdossier"), "doss.ID_DOSSIER = e.ID_DOSSIER", null)
             ->joinLeft("etablissementinformations", "e.ID_ETABLISSEMENT = etablissementinformations.ID_ETABLISSEMENT AND etablissementinformations.DATE_ETABLISSEMENTINFORMATIONS = ( SELECT MAX(etablissementinformations.DATE_ETABLISSEMENTINFORMATIONS) FROM etablissementinformations WHERE etablissementinformations.ID_ETABLISSEMENT = e.ID_ETABLISSEMENT )", "LIBELLE_ETABLISSEMENTINFORMATIONS")
-            //->joinRight("etablissementadresse", "etablissementinformations.ID_ETABLISSEMENT = etablissementadresse.ID_ETABLISSEMENT", "NUMINSEE_COMMUNE")
-            //->joinRight("adressecommune", "etablissementadresse.NUMINSEE_COMMUNE = adressecommune.NUMINSEE_COMMUNE", "LIBELLE_COMMUNE")
+            ->joinRight("etablissementadresse", "etablissementinformations.ID_ETABLISSEMENT = etablissementadresse.ID_ETABLISSEMENT", "NUMINSEE_COMMUNE")
+            ->joinRight("adressecommune", "etablissementadresse.NUMINSEE_COMMUNE = adressecommune.NUMINSEE_COMMUNE", "LIBELLE_COMMUNE")
+			->where('dateComm.ID_DATECOMMISSION = ?',$idDateCom)
+			->where("dossAffect.HEURE_DEB_AFFECT IS NULL")
+			->where("dossAffect.HEURE_FIN_AFFECT IS NULL")
+			->order("dossAffect.NUM_DOSSIER")
+			->group('doss.ID_DOSSIER');
+
+        return $this->getAdapter()->fetchAll($select);
+    }
+	
+	/*
+	*ajouter par Taoufik le 4/04
+	*Cette methode permet d'afficher les boutiques même sans adresses
+	*/
+	public function getDossierNonAffectBis($idDateCom)
+    {
+        //retourne l'ensemble des dossiers programÃ©s Ã  la date de comm passÃ©e en param et dont les horaires N'ONT PAS Ã©tÃ© prÃ©cisÃ©s
+		$select = $this->select()
+			->setIntegrityCheck(false)
+			->from(array('doss' => 'dossier'))
+			->join(array('dossAffect' => 'dossieraffectation'),'doss.ID_DOSSIER = dossAffect.ID_DOSSIER_AFFECT')
+			->join(array('dateComm' => 'datecommission'),'dossAffect.ID_DATECOMMISSION_AFFECT = dateComm.ID_DATECOMMISSION')
+			->join(array('dossNat' => 'dossiernature'),'dossNat.ID_DOSSIER = doss.ID_DOSSIER')
+			->join(array('dossNatListe' => 'dossiernatureliste'),'dossNat.ID_NATURE = dossNatListe.ID_DOSSIERNATURE')
+            ->join(array('dossType' => "dossiertype"), 'doss.TYPE_DOSSIER = dossType.ID_DOSSIERTYPE', 'LIBELLE_DOSSIERTYPE')
+            ->joinLeft(array("e" => "etablissementdossier"), "doss.ID_DOSSIER = e.ID_DOSSIER", null)
+            ->joinLeft("etablissementinformations", "e.ID_ETABLISSEMENT = etablissementinformations.ID_ETABLISSEMENT AND etablissementinformations.DATE_ETABLISSEMENTINFORMATIONS = ( SELECT MAX(etablissementinformations.DATE_ETABLISSEMENTINFORMATIONS) FROM etablissementinformations WHERE etablissementinformations.ID_ETABLISSEMENT = e.ID_ETABLISSEMENT )", "LIBELLE_ETABLISSEMENTINFORMATIONS")
+            ->joinLeft("etablissementadresse", "etablissementinformations.ID_ETABLISSEMENT = etablissementadresse.ID_ETABLISSEMENT", "NUMINSEE_COMMUNE")
+            ->joinLeft("adressecommune", "etablissementadresse.NUMINSEE_COMMUNE = adressecommune.NUMINSEE_COMMUNE", "LIBELLE_COMMUNE")
 			->where('dateComm.ID_DATECOMMISSION = ?',$idDateCom)
 			->where("dossAffect.HEURE_DEB_AFFECT IS NULL")
 			->where("dossAffect.HEURE_FIN_AFFECT IS NULL")

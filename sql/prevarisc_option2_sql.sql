@@ -1,0 +1,85 @@
+
+-- ajout de statut
+INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, 'En exploitation');
+INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, "Cessation d'activité");
+
+-- ajout de genre
+INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Fluvial');
+INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Transport guidé');
+INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Routier');
+INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Plans');
+
+-- le cas de gestion des dossiers :  
+
+--ajout de dossiertype
+
+INSERT INTO `dossiertype` (`ID_DOSSIERTYPE`, `LIBELLE_DOSSIERTYPE`) VALUES ('9', 'Avis Prévision');
+
+-- pour alimenter la liste des dossier 
+
+--- ajout de dossier nature
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Dossier de Demande d'Autorisation Environnementale", '1', 1);
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Demande d'enregistrement", '1', 1);
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Plan d'intervention", '1', 1);
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Plan d'urbanisme", '1', 1);
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Porter à connaissance", '1', 1);
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Autre', '1', 1);
+
+
+
+
+-- pour le type "Avis Prévision" : même chose que le type "Etude" :
+
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Permis de construire (PC)', 9, 2);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Autorisation de travaux (AT)', 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Demande de Dérogation', 9, 5);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Cahier des charges fonctionnel du SSI', 9, 13);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Cahier des charges', 9, 15);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'PC / PCM / AT communs', 9, 4);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Levée de prescriptions', 9, 12);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Documents divers', 9, 23);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Changement de DUS (Directeur unique de sécurité)', 9, 10);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Demande d'implantation CTS < 6mois", 9, 21);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Demande d'implantation CTS > 6mois", 9, 22);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Permis d'aménager (PA)", 9, 7);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Utilisation exceptionnelle de locaux", 9, 9);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Diagnostique sécurité", 9, 16);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Echéancier de travaux', 9, 11);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Certificats d'urbanisme (CU)", 9, 8);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Demande d'organisation de manifestation temporaire", 9, 17);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, "Modification Classement / Effectif", 9, 18);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Permis de construire modificatif (PCM)', 9, 3);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Demande préalable (DP)', 9, 6);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Certificat de conformité', 9, 14);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Homologation CTS', 9, 19);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (null, 'Retrait de conformité CTS', 9, 20); 
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Dossier de Demande d'Autorisation Environnementale", 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Demande d'enregistrement", 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Plan d'intervention", 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Plan d'urbanisme", 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Porter à connaissance", 9, 1);
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Autre', 9, 1);
+
+-- ajout de service instructeur
+
+-- ??????????????????????
+
+-- ajout de la nature "compte-rendu" au type "Groupe de visite" 
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Compte-rendu', '3', '7');
+
+-- ajout de la nature "Information" au type "Courrier /couriel" 
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Information', '5', '13');
+
+-- ajout de la nature "Préfectoral", "Municipal", "Autre"
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Préfectoral', '7', '6');
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Municipal', '7', '7');
+INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Autre', '7', '8');
+
+
+

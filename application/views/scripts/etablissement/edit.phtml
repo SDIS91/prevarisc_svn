@@ -73,7 +73,7 @@
                         <input type='checkbox' name='ICPE_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["ICPE_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
                     </p>
                 </dd>
-
+				
                 <dt class="champ_categorie champs">Catégorie</dt>
                 <dd class="champ_categorie champs">
                     <select name='ID_CATEGORIE'>
@@ -651,6 +651,7 @@
             switch($(this).find('option:selected').val()) {
                 // Site
                 case '1':
+					$('.champ_plans').show();
                     $('.etablissement_pere').hide();
                     break;
 
@@ -719,6 +720,17 @@
                     $('.champ_effectifs, .effectif_public, .champ_adresse, .champ_plans').show();
                     $('.etablissements_enfants').hide();
                     break;
+				//Ajouter par Taoufik le 20/07/2020 pour le genre : 
+				//linéaire
+				case '13':
+				case '14':
+				case '15':
+				//Plans : 
+				case '16':
+					$('.champ_effectifs, .champ_plans').show();
+					$('.etablissements_enfants').hide();
+					break;
+				
             }
         }).change();
 

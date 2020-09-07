@@ -27,16 +27,37 @@
             return $this->getAdapter()->fetchRow($select);
         }
         
-        // Added by George: pour l'intitule de la piece jointe
-        // Increment de l'intitule de la pj
-        public function maxUserPieceJointe($year_user, $userid)
+        // Added by George: pour l'intitule de la piece jointe // modifié par Taoufik le 27/08/2020 (correction de la requete et refactorisation des codes)
+        // Increment de l'intitule de la pj ==> newPJ
+        public function newUserPieceJointe()
         {
+			$idSessionUser = Zend_Auth::getInstance()->getIdentity()['ID_UTILISATEUR'];
+			$idUtilisateur = ((strlen($idSessionUser) < 2) ? "0" . $idSessionUser : $idSessionUser); // (G) retrouver l'id de l'utilisateur
+			$dateDuJour = new Zend_Date();
+			$year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$idUtilisateur;
+			$year_user_length = strlen($year_user);
             //echo "les champs : ".$table.$champ.$identifiant."<br/>";
-            $select = "SELECT MAX(NOM_PIECEJOINTE)
-                    FROM piecejointe
-                    WHERE SUBSTRING(NOM_PIECEJOINTE, 1, $userid ) = '$year_user';";
-            //echo $select;
-            return $this -> getAdapter() -> fetchRow($select);
+            $select = "SELECT MAX(CAST(NOM_PIECEJOINTE as UNSIGNED)) as nomPJ FROM `piecejointe` WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user%';";
+			//on recupère le nom de la dernière PJ de l'utilisateur actuel
+			$maxPJ = $this -> getAdapter() -> fetchRow($select);
+			//construction du nom de la PJ
+			$nomPJ = $year_user;
+			if (is_null($maxPJ['nomPJ'])) {
+				$first = '0001';
+				$nomPJ .= strval($first);
+			} else {
+				$increment = substr($maxPJ['nomPJ'], $year_user_length); 
+				$increment++;
+				if (strlen($increment) < 4) {
+					$zeros = 4 - strlen($increment);
+					for ($l = 1; $l <= $zeros; $l++) {
+						$increment = "0".$increment;
+					}
+				}
+				$nomPJ .= $increment;
+			}
+			
+            return $nomPJ;
         }
         /*
         * descriptionPiece : le description de la PJ

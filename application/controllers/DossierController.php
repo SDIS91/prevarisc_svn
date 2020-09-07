@@ -56,6 +56,7 @@ private $listeChamps = array(
             "70"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
    //Retrait de conformité CTS
             "71"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
+	//Ajouté par Taoufik le 21/07/20202) debut
 	//Dossier de Demande d'Autorisation Environnementale
             "82"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
 	//Demande d'enregistrement
@@ -129,6 +130,7 @@ private $listeChamps = array(
             "115"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
 	//Autre
             "116"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
+//Ajouté par Taoufik le 21/07/2020) fin
 //Visite de commission			
 	
    //Réception de travaux
@@ -145,7 +147,7 @@ private $listeChamps = array(
             "73"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Exceptionnelle de levée de sans avis
             "74"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
-//Groupe de visite (modifier par Taoufik le 22/07/20202)
+//Groupe de visite (modifier par Taoufik le 22/07/20202) : commenté et modifié par ce qui suit : debut 
   /* //Réception de travaux
             "25"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "DATEINSERT", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
    //Périodique
@@ -178,7 +180,8 @@ private $listeChamps = array(
 //Réunion
 	//Compte rendu de réunion
             "76"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-//Courrier / Courriel (modifier par Taoufik le 22/07/20202)
+    //fin modif 
+//Courrier / Courriel (modifier par Taoufik le 22/07/20202) debut 
 /* //Rapport d'organisme agréé
             "49"=> array("DATEINSERT", "DATEMAIRIE", "DATEPREF", "DATERECEPTIONCOMM", "DATESDIS", "DATESECRETARIAT", "DEMANDEUR", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "SERVICEINSTRUC", "type"),
    //Demande de visite hors programme
@@ -226,6 +229,7 @@ private $listeChamps = array(
             "60"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
    //Information 
 			"118"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+//fin
 //Intervention
    //Astreinte Prévention
             "37"=> array("DATEINSERT", "DATEINTERV", "DATESIGN", "DUREEINTERV", "NUMINTERV", "OBJET", "OBSERVATION", "OPERSDIS", "PREVENTIONNISTE", "RCCI", "REX", "type"),
@@ -261,6 +265,7 @@ private $listeChamps = array(
             "120"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
 	//Autre
             "121"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+//fin
 //A supprimer
         //A supprimer
             "77"=> array("OBJET", "type"),
@@ -2512,27 +2517,8 @@ private $listeChamps = array(
         $nouvellePJ = $DBpieceJointe->createRow();
         $nouvellePJ->ID_PIECEJOINTE = $this->view->idPieceJointe;
         // Modifications by George : intitule et descriptif personnalises de la piece jointe
-        $user = (strlen($this -> view -> idUser) < 2 ? "0" . $this -> view -> idUser : $this -> view -> idUser); // (G) retrouver l'id de l'utilisateur
-        $year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$user;
-        $userid = strlen($year_user);
-        // (G) Retrouver la derniere entree de l'utilisateur et l'incrementer pour renseigner l'intitule
-        $this -> view -> userPj = $DBpieceJointe -> maxUserPieceJointe($year_user, $userid); //concatener l'annee et l'id utilisateur
-        if (is_null($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'])) {
-            $first = '0001';
-            $year_user .= strval($first);
-        } else {
-            $increment = substr($this -> view -> userPj['MAX(NOM_PIECEJOINTE)'], $userid);
-            $increment++;
-            if (strlen($increment) < 4) {
-                $zeros = 4 - strlen($increment);
-                for ($l = 1; $l <= $zeros; $l++) {
-                    $increment = "0".$increment;
-                }
-            }
-            $year_user .= $increment;
-        }
-        //$nouvellePJ->NOM_PIECEJOINTE = substr(basename($this->view->fichierSelect), 0, strlen(basename($this->view->fichierSelect)) - 3);
-        $nouvellePJ -> NOM_PIECEJOINTE = $year_user;
+		//Modification faite par Taoufik le 27/08/2020 pour l'incrémenation des PJ
+        $nouvellePJ -> NOM_PIECEJOINTE = $DBpieceJointe->newUserPieceJointe();
         $nouvellePJ -> EXTENSION_PIECEJOINTE = ".odt";
 
         // (G) Récupération du type et de la nature du dossier

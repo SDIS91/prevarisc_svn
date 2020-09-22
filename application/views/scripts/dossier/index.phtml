@@ -854,7 +854,7 @@
 				}
 
 				var type = $("#TYPE_DOSSIER").val();
-				if(type == 2 || type == 3)
+				if(type == 2 || type == 3 || type == 9)
 				{
 					if($("#AVIS_DOSSIER_COMMISSION").val() == 2)
 					{
@@ -1214,7 +1214,7 @@ echo "
 					<div class='left libelle span3' style='float:left;'>Numéro Chrono SDIS 91</div>
 					<div class='right value span9' ".(('new' == $action) ? "style='display:none;'" : "")."> ".$this->infosDossier['REFCOURRIER_DOSSIER']."</div>
 					<div class='right form span9' ".(($action != 'new') ? "style='display:none;'" : "").">
-						<input type='text' id='REFCOURRIER_DOSSIER' name='REFCOURRIER_DOSSIER' value='".($this -> infosDossier['TYPE_DOSSIER'] == 1 ? ($this -> infosDossier['REFCOURRIER_DOSSIER'] ? $this->infosDossier['REFCOURRIER_DOSSIER'] : $this->increment) : "")."' size='15' maxlength='15' readonly /><br/>
+						<input type='text' id='REFCOURRIER_DOSSIER' name='REFCOURRIER_DOSSIER' value='".(($this -> infosDossier['TYPE_DOSSIER'] == 1 || $this -> infosDossier['TYPE_DOSSIER'] == 5 || $this -> infosDossier['TYPE_DOSSIER'] == 9) ? ($this -> infosDossier['REFCOURRIER_DOSSIER'] ? $this->infosDossier['REFCOURRIER_DOSSIER'] : $this->increment) : "")."' size='15' maxlength='15' readonly /><br/>
 					</div>
 				</li>
 				<li class='row-fluid' id='OBJET' style='".((in_array('OBJET', $this->afficherChamps) && $this->infosDossier['OBJET_DOSSIER'] != '') ? "" : "display:none;")."margin-bottom:20px;'>

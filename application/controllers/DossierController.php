@@ -1014,7 +1014,8 @@ private $listeChamps = array(
                 }
             }
             // Added by george: renseigner la reference courrier lors de la creation
-            if ($this -> _getParam("TYPE_DOSSIER") == 1 and !$this -> _getParam("REFCOURRIER_DOSSIER")) {
+			//modifié par Taoufik le 22/09/2020 suite à l'email de Karine pour Ajouter le Numéro Chrono SDIS 91 aux type "Avis de prévision" et "Courrier/courriel"
+            if ($this -> _getParam("TYPE_DOSSIER") == 1 || $this -> _getParam("TYPE_DOSSIER") == 5  || $this -> _getParam("TYPE_DOSSIER") == 9) and !$this -> _getParam("REFCOURRIER_DOSSIER")) {
                 $annee = new Zend_Date();
                 $year = $annee -> get(Zend_Date::YEAR);
                 $DBrefCourrier = $DBdossier -> maxReferenceCourrier($year);

@@ -8,6 +8,7 @@ INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Flu
 INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Transport guidé');
 INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Routier');
 INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Plans');
+INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Fluides')
 
 -- le cas de gestion des dossiers :  
 
@@ -66,9 +67,15 @@ INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, "Porter à connaissance", 9, 1);
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Autre', 9, 1);
 
--- ajout de service instructeur
+-- ajout de service instructeur (à voir avec Karine) : page 29 ==> 
+-- la table en question est "`groupement`" : avec ID_GROUPEMENTTYPE = 10 (service instructeur) : il me faut le ID_UTILISATEURINFORMATIONS : 
+-- j'ai trouvé (table : utilisteurinformations) pour Evry : ID_UTILISATEURINFORMATIONS = 54 (PETEL YANN), pour essonne (52 : TRON Georges)
+-- ?????????????????????? 
+-- pour tester avec le profil de Karine (ID_UTILISATEURINFORMATIONS = 10)
+INSERT INTO `groupement` (`ID_GROUPEMENT`, `LIBELLE_GROUPEMENT`, `ID_UTILISATEURINFORMATIONS`, `ID_GROUPEMENTTYPE`) VALUES (NULL, 'DRIEE', '10', '10');
+INSERT INTO `groupement` (`ID_GROUPEMENT`, `LIBELLE_GROUPEMENT`, `ID_UTILISATEURINFORMATIONS`, `ID_GROUPEMENTTYPE`) VALUES (NULL, 'BDPC', '10', '10');
+INSERT INTO `groupement` (`ID_GROUPEMENT`, `LIBELLE_GROUPEMENT`, `ID_UTILISATEURINFORMATIONS`, `ID_GROUPEMENTTYPE`) VALUES (NULL, 'Commune', '10', '10')
 
--- ??????????????????????
 
 -- ajout de la nature "compte-rendu" au type "Groupe de visite" 
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Compte-rendu', '3', '7');
@@ -80,6 +87,3 @@ INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Préfectoral', '7', '6');
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Municipal', '7', '7');
 INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Autre', '7', '8');
-
-
-

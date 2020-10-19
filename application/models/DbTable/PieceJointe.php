@@ -36,17 +36,19 @@
 			$dateDuJour = new Zend_Date();
 			$year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$idUtilisateur;
 			$year_user_length = strlen($year_user);
-            //echo "les champs : ".$table.$champ.$identifiant."<br/>";
-            $select = "SELECT MAX(CAST(NOM_PIECEJOINTE as UNSIGNED)) as nomPJ FROM `piecejointe` WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user%';";
+            //$select = "SELECT MAX(CAST(NOM_PIECEJOINTE as UNSIGNED)) as nomPJ FROM `piecejointe` WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user%';";
+			$select = "select MAX(CAST(substring_index(`NOM_PIECEJOINTE`,'-',-1)as UNSIGNED)) as nomPJ from piecejointe where NOM_PIECEJOINTE like '$year_user-%'";
 			//on recupère le nom de la dernière PJ de l'utilisateur actuel
 			$maxPJ = $this -> getAdapter() -> fetchRow($select);
 			//construction du nom de la PJ
 			$nomPJ = $year_user;
 			if (is_null($maxPJ['nomPJ'])) {
-				$first = '0001';
+				$first = '-0001';
 				$nomPJ .= strval($first);
 			} else {
-				$increment = substr($maxPJ['nomPJ'], $year_user_length); 
+				//$increment = substr($maxPJ['nomPJ'], $year_user_length); 
+				//print_r($increment); die;
+				$increment = $maxPJ['nomPJ'];
 				$increment++;
 				if (strlen($increment) < 4) {
 					$zeros = 4 - strlen($increment);
@@ -54,7 +56,7 @@
 						$increment = "0".$increment;
 					}
 				}
-				$nomPJ .= $increment;
+				$nomPJ .= '-'.$increment;
 			}
 			
             return $nomPJ;

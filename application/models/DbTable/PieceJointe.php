@@ -37,7 +37,7 @@
 			$year_user = $dateDuJour -> get(Zend_Date::YEAR_SHORT).$idUtilisateur;
 			$year_user_length = strlen($year_user);
             //$select = "SELECT MAX(CAST(NOM_PIECEJOINTE as UNSIGNED)) as nomPJ FROM `piecejointe` WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user%';";
-			$select = "SELECT MAX(CAST(substring_index(`NOM_PIECEJOINTE`,'-',-1)as UNSIGNED)) as nomPJ FROM piecejointe WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user-%'";
+			$select = "SELECT MAX(CAST(substring_index(`NOM_PIECEJOINTE`,'-',-1) as UNSIGNED)) as nomPJ FROM piecejointe WHERE `EXTENSION_PIECEJOINTE` = '.odt' AND NOM_PIECEJOINTE like '$year_user-%'";
 			//on recupère le nom de la dernière PJ de l'utilisateur actuel
 			$maxPJ = $this -> getAdapter() -> fetchRow($select);
 			//construction du nom de la PJ

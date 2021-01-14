@@ -31,19 +31,26 @@ IF (@genre_s = 1) THEN
         UPDATE etablissement SET NUMEROID_ETABLISSEMENT = @new_numeroid WHERE ID_ETABLISSEMENT = NEW.ID_ETABLISSEMENT;
     END IF;
 ELSEIF (@genre_b = 3) THEN
+	SET @length_numeroid = (SELECT LENGTH(etablissement.NUMEROID_ETABLISSEMENT) FROM etablissement WHERE etablissement.ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT);
     SET @existe = (SELECT etablissement.NUMEROID_ETABLISSEMENT FROM etablissement WHERE etablissement.ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT);
     SET @existe = SUBSTR(@existe, 1, 1);
     IF (@existe != 'B') THEN
-        SET @new_numeroid = (SELECT etablissement.NUMEROID_ETABLISSEMENT FROM etablissement WHERE etablissement.ID_ETABLISSEMENT = NEW.ID_ETABLISSEMENT);
-        SET @new_numeroid = SUBSTR(@new_numeroid, 2);
-        SET @etb_insee = SUBSTR(@new_numeroid, 1, 3);
-        IF (@existe REGEXP '^[0-9]$') THEN
-            SET @etb_iter = score(@etb_insee);
-            SET @new_numeroid_fils = CONCAT('B', @etb_insee, @etb_iter);
-        ELSE
-            SET @new_numeroid_fils = CONCAT('B', @new_numeroid);
-        END IF;
-        UPDATE etablissement SET NUMEROID_ETABLISSEMENT = @new_numeroid_fils WHERE ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT;
+		IF (@length_numeroid = 13) THEN
+			SET @ancien_num = (SELECT etablissement.NUMEROID_ETABLISSEMENT FROM etablissement WHERE etablissement.ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT);
+			SET @new_numeroid_fils = CONCAT('B',SUBSTR(@ancien_num, 2));
+			UPDATE etablissement SET NUMEROID_ETABLISSEMENT = @new_numeroid_fils WHERE ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT;
+		ELSE
+			SET @new_numeroid = (SELECT etablissement.NUMEROID_ETABLISSEMENT FROM etablissement WHERE etablissement.ID_ETABLISSEMENT = NEW.ID_ETABLISSEMENT);
+			SET @new_numeroid = SUBSTR(@new_numeroid, 2);
+			SET @etb_insee = SUBSTR(@new_numeroid, 1, 3);
+			IF (@existe REGEXP '^[0-9]$') THEN
+				SET @etb_iter = score(@etb_insee);
+				SET @new_numeroid_fils = CONCAT('B', @etb_insee, @etb_iter);
+			ELSE
+				SET @new_numeroid_fils = CONCAT('B', @new_numeroid);
+			END IF;
+			UPDATE etablissement SET NUMEROID_ETABLISSEMENT = @new_numeroid_fils WHERE ID_ETABLISSEMENT = NEW.ID_FILS_ETABLISSEMENT;
+		END IF;
     END IF;
 END IF;
 

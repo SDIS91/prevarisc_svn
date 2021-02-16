@@ -3,10 +3,10 @@
 ini_set("display_errors", 1);
 ini_set('max_execution_time', 3600); // 1h
 
-$path_abs = '/home/www/html/prevarisc/public/';
-$path_log = $path_abs.'/log/';
+$path_abs = '/home/www/html/prevarisc/public';
+$path_log = $path_abs.'/log';
 $path = '/home/www/html/prevarisc/public/tmp_PJ';
-$destination = '/home/www/html/prevarisc/public/propre_pj/';
+$destination = '/home/www/html/prevarisc/public/propre_pj';
 
 $user ="root";
 $host ="localhost";

@@ -1,5 +1,10 @@
 <?php
 
+/*
+*@created by : Taoufik MESSAOUD, 15/02/2021
+*Script qui permet renommer les pièces jointes d'un dossier, à partir d'une base de données
+*/
+
 ini_set("display_errors", 1);
 ini_set('max_execution_time', 3600); // 1h 
 
@@ -54,7 +59,7 @@ foreach($files as $file){
 				echo '- '.$file.'  ==>  renomme en =======> '.$newname;
 				echo '<br>';
 			}else{
-				fwrite($lfp, "KO rename : $nompj\n\n ");
+				fwrite($lfp, "KO rename : $nompj\n ");
 			}
 		}
 	}

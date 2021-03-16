@@ -1,5 +1,12 @@
 <div id='etablissement'>
-
+	<?php $dataAdresse = isset($this->etablissement['adresses'][0]) ? $this->etablissement['adresses'][0] : array(); 
+	if(count($dataAdresse) > 0){
+		$urlCarto = "http://srv-sig-app.intra.sdis91.fr/js/cartowebjs/index.html?config=PREVENTION&xurl=".$dataAdresse['LON_ETABLISSEMENTADRESSE']."&yurl=".$dataAdresse['LAT_ETABLISSEMENTADRESSE']."&zoomurl=17&idetab=".$dataAdresse['ID_ETABLISSEMENT']."&idadresse=".$dataAdresse['ID_ADRESSE'];
+	?>
+	<div class='pull-right' style="margin-left: 3px;">
+        <a class='btn' href="<?php echo $urlCarto ?>" target="_blank">Localiser l’établissement </a>
+    </div>
+	<?php } ?>
     <div class='pull-right' >
         <a class='btn' href="<?php echo $this->url(array('action' => 'edit')) ?>">Modifier la fiche</a>
     </div>

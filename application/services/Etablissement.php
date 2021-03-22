@@ -802,7 +802,8 @@ class Service_Etablissement implements Service_Interface_Etablissement
             }
 
             // Sauvegarde des plans en fonction du genre, added by george: numeros 11 et 12
-            if(in_array($id_genre, array(2, 3, 5, 6, 7, 8, 9, 11, 12)) && array_key_exists('PLANS', $data) && count($data['PLANS']) > 0) {
+			// added by Taoufik 13/14/15/16/17
+            if(in_array($id_genre, array(2, 3, 5, 6, 7, 8, 9, 11, 12,13,14,15,16,17)) && array_key_exists('PLANS', $data) && count($data['PLANS']) > 0) {
                 foreach($data['PLANS'] as $key => $plan) {
                     if($key > 0) {
                         $DB_plans->createRow(array(
@@ -829,8 +830,9 @@ class Service_Etablissement implements Service_Interface_Etablissement
                 }
             }
 
-            // Sauvegarde des adresses en fonction du genre, added by george: numeros 11 et 12
-            if(in_array($id_genre, array(2, 4, 5, 6, 7, 8, 9, 10, 11, 12)) && array_key_exists('ADRESSES', $data) && count($data['ADRESSES']) > 0) {
+            // Sauvegarde des adresses en fonction du genre, added by george: numeros 11 et 12 
+			// added by Taoufik 13/14/15/16/17
+            if(in_array($id_genre, array(2, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15,16,17)) && array_key_exists('ADRESSES', $data) && count($data['ADRESSES']) > 0) {
                 foreach($data['ADRESSES'] as $key => $adresse) {
                     if($key > 0) {
                     	if(array_key_exists('ID_RUE', $adresse) && (int) $adresse["ID_RUE"] > 0) {

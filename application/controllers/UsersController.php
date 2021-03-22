@@ -460,6 +460,57 @@ class UsersController extends Zend_Controller_Action
                                 $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
                                 $text .= ')';
                                 break;
+							//added by Taoufik ....
+							case '13':
+                                $name = 'etablissement_lfl_';
+                                $name .= $this->_request->groupements . '_';
+                                $name .= $this->_request->commune;
+                                
+                                $text = 'Genres Linéaire - Fluvial (';
+                                $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
+                                $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
+                                $text .= ')';
+                                break;
+							case '14':
+                                $name = 'etablissement_ltg_';
+                                $name .= $this->_request->groupements . '_';
+                                $name .= $this->_request->commune;
+                                
+                                $text = 'Linéaire - Transport guidé (';
+                                $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
+                                $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
+                                $text .= ')';
+                                break;
+							case '15':
+                                $name = 'etablissement_lro_';
+                                $name .= $this->_request->groupements . '_';
+                                $name .= $this->_request->commune;
+                                
+                                $text = 'Linéaire - Routier (';
+                                $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
+                                $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
+                                $text .= ')';
+                                break;
+							case '16':
+                                $name = 'etablissement_pla_';
+                                $name .= $this->_request->groupements . '_';
+                                $name .= $this->_request->commune;
+                                
+                                $text = 'Plans (';
+                                $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
+                                $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
+                                $text .= ')';
+                                break;
+							case '17':
+                                $name = 'etablissement_lfd_';
+                                $name .= $this->_request->groupements . '_';
+                                $name .= $this->_request->commune;
+                                
+                                $text = 'Linéaire - Fluides (';
+                                $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
+                                $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
+                                $text .= ')';
+                                break;
                         }
 
                         $id_resource = $model_resource->createRow(array('name' => $name, 'text' => $this->_request->text == '' ? $text : $this->_request->text))->save();

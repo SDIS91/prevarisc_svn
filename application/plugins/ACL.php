@@ -186,7 +186,7 @@ class Plugin_ACL extends Zend_Controller_Plugin_Abstract
                         $resource_imploded = implode($resource_exploded, '_');
                         $list_resources_finale =  array($resource_imploded);
 
-			$resources = new ResourceContainer($list_resources_finale);
+					$resources = new ResourceContainer($list_resources_finale);
                         foreach($resources as $r) {
                             if(!$acl->has($r)) {
                                 $acl->add(new Zend_Acl_Resource($r));
@@ -530,6 +530,32 @@ class Plugin_ACL extends Zend_Controller_Plugin_Abstract
  
             case '12':
                 $resource = 'etablissement_div_';
+                $resource .= $groupements[$id_etablissement] . '_';
+                $resource .= $communes[$id_etablissement];
+                break;
+			//added by Taoufik pour les genres Linéaire - Fluvial (lfl), Linéaire - Transport guidé(ltg), Linéaire - Routier(lro), Plans (pla), Linéaire - Fluides (lfd)
+			case '13':
+                $resource = 'etablissement_lfl_';
+                $resource .= $groupements[$id_etablissement] . '_';
+                $resource .= $communes[$id_etablissement];
+                break;
+			case '14':
+                $resource = 'etablissement_ltg_';
+                $resource .= $groupements[$id_etablissement] . '_';
+                $resource .= $communes[$id_etablissement];
+                break;
+			case '15':
+                $resource = 'etablissement_lro_';
+                $resource .= $groupements[$id_etablissement] . '_';
+                $resource .= $communes[$id_etablissement];
+                break;
+			case '16':
+                $resource = 'etablissement_pla_';
+                $resource .= $groupements[$id_etablissement] . '_';
+                $resource .= $communes[$id_etablissement];
+                break;
+			case '17':
+                $resource = 'etablissement_lfd_';
                 $resource .= $groupements[$id_etablissement] . '_';
                 $resource .= $communes[$id_etablissement];
                 break;

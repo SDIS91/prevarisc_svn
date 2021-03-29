@@ -359,7 +359,7 @@ class Service_Etablissement implements Service_Interface_Etablissement
             if ($tmp != null) {
               $historique[$key][ count($historique[$key])-1 ]["fin"] = $date->get( Zend_Date::DAY_SHORT." ".Zend_Date::MONTH_NAME_SHORT." ".Zend_Date::YEAR );
             }
-            if($dossier->CREATEUR_DOSSIER != null) {
+            if($dossier->CREATEUR_DOSSIER != null && $DB_utilisateurs->find($dossier->CREATEUR_DOSSIER)->current()->ID_UTILISATEURINFORMATIONS != null) {
               $author = $DB_utilisateursInfo->fetchRow("ID_UTILISATEURINFORMATIONS = " . $DB_utilisateurs->find($dossier->CREATEUR_DOSSIER)->current()->ID_UTILISATEURINFORMATIONS)->toArray();
             }
             $historique[$key][] = array(

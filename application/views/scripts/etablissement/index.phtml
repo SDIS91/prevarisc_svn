@@ -1,7 +1,8 @@
 <div id='etablissement'>
 	<?php $dataAdresse = isset($this->etablissement['adresses'][0]) ? $this->etablissement['adresses'][0] : array(); 
 	if(count($dataAdresse) > 0){
-		$urlCarto = "http://srv-sig-app.intra.sdis91.fr/js/cartowebjs/index.html?config=PREVENTION&xurl=".$dataAdresse['LON_ETABLISSEMENTADRESSE']."&yurl=".$dataAdresse['LAT_ETABLISSEMENTADRESSE']."&zoomurl=17&idetab=".$dataAdresse['ID_ETABLISSEMENT']."&idadresse=".$dataAdresse['ID_ADRESSE'];
+		$nomEtab = isset($this->etablissement['informations']['LIBELLE_ETABLISSEMENTINFORMATIONS']) ? $this->etablissement['informations']['LIBELLE_ETABLISSEMENTINFORMATIONS'] : '';
+		$urlCarto = "http://srv-sig-app.intra.sdis91.fr/js/cartowebjs/index.html?config=PREVENTION&xurl=".$dataAdresse['LON_ETABLISSEMENTADRESSE']."&yurl=".$dataAdresse['LAT_ETABLISSEMENTADRESSE']."&zoomurl=17&idetab=".$dataAdresse['ID_ETABLISSEMENT']."&idadresse=".$dataAdresse['ID_ADRESSE']."&nometab=".$nomEtab;
 	?>
 	<div class='pull-right' style="margin-left: 3px;">
         <a class='btn' href="<?php echo $urlCarto ?>" target="_blank">Localiser l’établissement </a>

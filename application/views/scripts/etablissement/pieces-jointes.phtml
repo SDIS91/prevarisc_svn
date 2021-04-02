@@ -28,15 +28,18 @@
 				<?php if(!in_array($piecejointe['EXTENSION_PIECEJOINTE'], array(".jpg", ".jpeg", ".png", ".gif"))) : ?>
 				<tr>   
 					<td>
+					<!-- modifié par Taoufik le 02/04/2021 pour ne pas mettre de lien s'il n' ya pas d'extension -->
+					<?php if($piecejointe['EXTENSION_PIECEJOINTE'] != '' &&  $piecejointe['EXTENSION_PIECEJOINTE'] != null){?>
 						<a href='<?php echo $this->url(array('controller' => 'piece-jointe', 'action' => 'get', 'idpj' => $piecejointe['ID_PIECEJOINTE'], 'type' => 'etablissement')) ?>' target='_blank' >
 							<?php echo $piecejointe['NOM_PIECEJOINTE'].$piecejointe['EXTENSION_PIECEJOINTE']  ?>
 						</a>
+					<?php } else { echo $piecejointe['NOM_PIECEJOINTE']; } ?>
 					</td>
 					<td>
 						<?php echo empty($piecejointe['DESCRIPTION_PIECEJOINTE']) ? 'Aucune description.' : nl2br(str_replace("<br />", "" ,$piecejointe['DESCRIPTION_PIECEJOINTE'])) ?>
 					</td>
 					<td>
-						<?php echo date_format(new DateTime($piecejointe['DATE_PIECEJOINTE']), 'd/m/Y') ?>
+						<?php echo date_format(new DateTime($piecejointe['DATE_PIECEJOINTE']), 'd/m/Y') ?> 
 					</td>
 				</tr>
 				<?php endif ?>

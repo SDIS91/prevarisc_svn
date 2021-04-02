@@ -186,7 +186,8 @@
             <?php endif ?>
 
             <!-- Plan -->
-            <?php if(in_array($this->etablissement['informations']['ID_GENRE'], array(2, 3, 5, 6, 11,13,14,15,16,17))) : ?>
+			<!-- affichage des plans pour les sites aussi (ajouté "1" à l'array(...) par Taoufik le 02/04/2021)-->
+            <?php if(in_array($this->etablissement['informations']['ID_GENRE'], array(1, 2, 3, 5, 6, 11, 13, 14, 15, 16, 17))) : ?>
             <h4 class='h4_subtitle'>Plans d'intervention</h4>
             <?php if(count($this->etablissement['plans']) == 0) : ?>
             <p class='muted text-center'>Pas de plans disponible</p>

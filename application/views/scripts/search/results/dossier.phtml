@@ -17,7 +17,8 @@
                     <i class="icon-file"></i>
                 </a>
             <?php endif ?>
-            <a href='/dossier/index/id/<?php echo $this->ID_DOSSIER ?>' title='<?php echo htmlspecialchars($this->LIBELLE_DOSSIERTYPE . " - " . $this->LIBELLE_DOSSIERNATURE . (!empty($this->OBJET_DOSSIER) ? " - " . $this->OBJET_DOSSIER : ""), ENT_QUOTES) ?>'>
+            <!-- modified by george: dossiers a supprimer grises et barres -->
+            <a href='/dossier/index/id/<?php echo $this->ID_DOSSIER ?>' title='<?php echo htmlspecialchars($this->LIBELLE_DOSSIERTYPE . " - " . $this->LIBELLE_DOSSIERNATURE . (!empty($this->OBJET_DOSSIER) ? " - " . $this->OBJET_DOSSIER : ""), ENT_QUOTES) ?>'<?php echo ($this -> TYPE_DOSSIER == 99 ? " style = 'text-decoration: line-through; opacity: 0.5;'" : ""); ?>>
                 <?php if($this->LIBELLE_ETABLISSEMENTINFORMATIONS != null): ?>
                     <?php echo '[' . $this->LIBELLE_ETABLISSEMENTINFORMATIONS . '] ' ?>
                 <?php endif ?>

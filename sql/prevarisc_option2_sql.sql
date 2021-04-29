@@ -114,3 +114,7 @@ INSERT INTO `typeplan` (`ID_TYPEPLAN`, `LIBELLE_TYPEPLAN`) VALUES (NULL, 'PIS');
 
 --- suite à la reunion du 01/04/2021 : mettre la date du 01/04/2021 à la place des dates null  (2734 PJ ont été modifiée)
 UPDATE `piecejointe` SET `DATE_PIECEJOINTE` = '2021-04-01' WHERE `DATE_PIECEJOINTE` is null 
+
+--- correction demandée par pascal le 29/04/2021
+
+UPDATE `fonction` SET `LIBELLE_FONCTION` = 'Contrôleur technique (organisme agréé)' WHERE `fonction`.`ID_FONCTION` = 6; 

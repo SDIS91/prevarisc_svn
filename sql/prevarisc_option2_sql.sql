@@ -1,7 +1,7 @@
 
--- ajout de statut
-INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, 'En exploitation');
-INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, "Cessation d'activité");
+-- ajout de statut (modification annulée) => demande de Karine le 20/05/2021
+--INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, 'En exploitation');
+-- INSERT INTO `statut` (`ID_STATUT`, `LIBELLE_STATUT`) VALUES (NULL, "Cessation d'activité");
 
 -- ajout de genre
 INSERT INTO `genre` (`ID_GENRE`, `LIBELLE_GENRE`) VALUES (NULL, 'Linéaire - Fluvial');

@@ -407,7 +407,7 @@
         {
             $select = "SELECT MAX(REFCOURRIER_DOSSIER)
                     FROM dossier
-                    WHERE SUBSTRING(REFCOURRIER_DOSSIER, 1, 4) = '$year';";
+                    WHERE SUBSTRING(REFCOURRIER_DOSSIER, 1, 4) = '$year' AND LENGTH(REFCOURRIER_DOSSIER) < 9;";
             return $this->getAdapter()->fetchRow($select);
         }
     }

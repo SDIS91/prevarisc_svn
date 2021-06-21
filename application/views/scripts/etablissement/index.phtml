@@ -1,6 +1,7 @@
 <div id='etablissement'>
 	<?php $dataAdresse = isset($this->etablissement['adresses'][0]) ? $this->etablissement['adresses'][0] : array(); 
-	if(count($dataAdresse) > 0){
+	//1, genre=3, genre= 13, genre=14, genre=15, genre=17
+	if(count($dataAdresse) > 0 && !in_array($this->etablissement['informations']['ID_GENRE'], array(1, 3, 13, 14, 15, 17))){
 		$nomEtab = isset($this->etablissement['informations']['LIBELLE_ETABLISSEMENTINFORMATIONS']) ? $this->etablissement['informations']['LIBELLE_ETABLISSEMENTINFORMATIONS'] : '';
 		$urlCarto = "http://srv-sig-app.intra.sdis91.fr/js/cartowebjs/index.html?config=PREVENTION&xurl=".$dataAdresse['LON_ETABLISSEMENTADRESSE']."&yurl=".$dataAdresse['LAT_ETABLISSEMENTADRESSE']."&zoomurl=17&idetab=".$dataAdresse['ID_ETABLISSEMENT']."&idadresse=".$dataAdresse['ID_ADRESSE']."&nometab=".$nomEtab;
 	?>

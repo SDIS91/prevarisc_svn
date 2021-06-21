@@ -804,7 +804,7 @@ class Service_Etablissement implements Service_Interface_Etablissement
 
             // Sauvegarde des plans en fonction du genre, added by george: numeros 11 et 12
 			// added by Taoufik 13/14/15/16/17
-            if(in_array($id_genre, array(2, 3, 5, 6, 7, 8, 9, 11, 12,13,14,15,16,17)) && array_key_exists('PLANS', $data) && count($data['PLANS']) > 0) {
+            if(in_array($id_genre, array(1, 2, 3, 5, 6, 7, 8, 9, 11, 12,13,14,15,16,17)) && array_key_exists('PLANS', $data) && count($data['PLANS']) > 0) {
                 foreach($data['PLANS'] as $key => $plan) {
                     if($key > 0) {
                         $DB_plans->createRow(array(

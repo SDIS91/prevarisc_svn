@@ -17,6 +17,7 @@ SET etb_iter = (SELECT
                             MID(NUMEROID_ETABLISSEMENT, 2, 3) AS insee, CAST(MID(NUMEROID_ETABLISSEMENT, 2, 9) AS int) AS iteration 
                         FROM 
                             etablissement
+						WHERE LENGTH(NUMEROID_ETABLISSEMENT) > 8
                         GROUP BY 
                             iteration) AS tempo, (SELECT 
                                                     @compteur := 0) AS t 

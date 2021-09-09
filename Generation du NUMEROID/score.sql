@@ -34,7 +34,9 @@ IF etb_iter IS NULL THEN
                     FROM 
                         etablissement 
                     WHERE 
-                        MID(NUMEROID_ETABLISSEMENT, 2, 3) = etb_insee
+					    LENGTH(NUMEROID_ETABLISSEMENT) > 8
+                    AND
+						MID(NUMEROID_ETABLISSEMENT, 2, 3) = etb_insee
                     ORDER BY 
                         iteration);
 END IF;

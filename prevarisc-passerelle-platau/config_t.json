@@ -1,0 +1,18 @@
+{
+    "platau.options": {
+        "PISTE_CLIENT_ID": "141f6e44-7860-4582-a527-c52e64de6881",
+        "PISTE_CLIENT_SECRET": "dfb8370a-e06c-4365-99ba-b2bd2ec10aca",
+        "PLATAU_ID_ACTEUR_APPELANT": "7KN-Z0Y-WK3"
+    },
+    "prevarisc.options": {
+        "PREVARISC_DB_NAME": "prevarisc",
+        "PREVARISC_DB_USER": "platau",
+        "PREVARISC_DB_PASSWORD": "lmdpdplat.6",
+        "PREVARISC_DB_HOST": "172.30.2.93",
+        "PREVARISC_DB_DRIVER": "pdo_mysql",
+        "PREVARISC_DB_CHARSET": "utf8",
+        "PREVARISC_DB_PORT": 3306,
+        "PREVARISC_DB_PLATAU_USER_ID": 0,
+        "PREVARISC_PIECES_JOINTES_PATH": "172.30.2.93/home/www/html/prevarisc/public/data/uploads/pieces-jointes"
+    }
+}

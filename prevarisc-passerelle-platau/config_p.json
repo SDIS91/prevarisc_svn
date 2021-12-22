@@ -13,6 +13,6 @@
         "PREVARISC_DB_CHARSET": "utf8",
         "PREVARISC_DB_PORT": 3306,
         "PREVARISC_DB_PLATAU_USER_ID": 0,
-        "PREVARISC_PIECES_JOINTES_PATH": "172.30.2.97/home/www/html/prevarisc/public/data/uploads/pieces-jointes"
+        "PREVARISC_PIECES_JOINTES_PATH": "/opt/prevarisc/pieces-jointes"
     }
 }

@@ -34,6 +34,10 @@
 		?>
 		</tbody>
 	</table>
+	<form method="post" action="/piece-jointe/download-zip" id="zip_pj">
+		<input type="hidden" name="listePj" id="listePj" value="" >
+		<input type="submit" name="createzip" style="border:0px; background-color:#800040; color:#FFF; padding:10px; cursor:pointer; font-weight:bold; border-radius:5px;" value="Télécharger un ZIP" />
+	</form>
 </div>
 
 <script type="text/javascript">
@@ -105,7 +109,19 @@
 				}
 			});
 		});
-                
+		
+		//traitement zip des PJ, ajouter par Taoufik le 07/03/2022
+		var listePJ = "";
+		$(".pjID").each(function(){
+			var id_pj = $(this).attr('id'); 
+			listePJ += "|"+id_pj;
+			console.log(listePJ);
+		})
+		
+		$("#listePj").val(listePJ);
+		
+		
+
                 /* GESTION DU GLISSEZ DEPOSER */
                 /* removed by george
                 $("#addPJQuick").click(function() {

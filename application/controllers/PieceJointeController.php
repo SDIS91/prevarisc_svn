@@ -429,5 +429,42 @@ class PieceJointeController extends Zend_Controller_Action
        }
     }
     
+	 public function downloadZipAction()
+    {
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(TRUE);
+		$error = ""; //error holder
+		if(isset($_POST['createzip'])){
+			$string_pj = $_POST['listePj'];
+			$listePJ = explode("|",$string_pj);
+			array_shift($listePJ);
+			$file_folder = "data/uploads/pieces-jointes/"; // dossier pour charger des fichiers
+			$zip = new ZipArchive(); // Lecture librairie zip
+			$zip_name = "pieces_jointes.zip"; // nom Zip
+			if($zip->open($zip_name, ZIPARCHIVE::CREATE)!==TRUE){ // Ouverture du zip pour carger les fichiers
+				$error .=  "* Création ZIP : désolé cela a échoué !";
+			}
+			
+			$tab_extension = array('pdf','PDF','doc','DOC','xls','XLS','csv','CSV','pps','PPS','ppt','PPT','jpg','JPG','odt','ODT','zip','ZIP','png','PNG','rtf','RTF','docx','DOCX');
+			foreach($listePJ as $file){
+				foreach($tab_extension as $extension){
+					$nom_pj = $file_folder.$file.'.'.$extension;
+					if (file_exists($nom_pj)) {
+						$zip->addFile($nom_pj); // Ajout des fichiers dans le zip
+					}
+				}
+			}
+			$zip->close();
+
+			if(file_exists($zip_name)){
+				// push to download the zip
+				header('Content-type: application/zip');
+				header('Content-Disposition: attachment; filename="'.$zip_name.'"');
+				readfile($zip_name);
+				// supprimer le fichier zip s'il existe dans le temp/
+				unlink($zip_name);
+			}
+		}
+	}
     
 }

@@ -36,6 +36,7 @@
 	</table>
 	<form method="post" action="/piece-jointe/download-zip" id="zip_pj">
 		<input type="hidden" name="listePj" id="listePj" value="" >
+		<input type="hidden" name="dossier_id" id="dossier_id" value="" >
 		<input type="submit" name="createzip" class="btn" value="Télécharger un ZIP des PJ" />
 	</form>
 </div>
@@ -120,6 +121,7 @@
 		})
 		//add au champ caché
 		$("#listePj").val(listePJ);
+		$("#dossier_id").val($("#idLinkPJ").val());
 		
 		
 

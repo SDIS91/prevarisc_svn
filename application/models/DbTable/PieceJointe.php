@@ -106,4 +106,11 @@
             
             return $desc;
         }
+		
+		public function infosDossierPiece($id_dossier) {
+			$select = "SELECT * from dossier where dossier.ID_DOSSIER = '".$id_dossier."'";
+			$result_infos = $this->getAdapter()->fetchRow($select);
+			
+			return $result_infos;
+		}
     }

@@ -442,15 +442,26 @@ class PieceJointeController extends Zend_Controller_Action
 		$this->_helper->layout->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(TRUE);
 		$error = ""; //error holder
-
+		
+		$DBpj = new Model_DbTable_PieceJointe();
+		$infosPJDossier = $DBpj->infosDossierPiece((int)$this->_request->dossier_id);
+		
+		$descriptionPJ = $DBpj->descriptionPiece((int)$this->_request->dossier_id);
+		
+		//remplacer les caractères speciaux et les espaces et les caractères accentués par _
+		$objetPJ = $this->_cleanStr($descriptionPJ);
 		if(isset($this->_request->createzip)){
 			$string_pj = $this->_request->listePj;
 			$listePJ = explode("|",$string_pj);
 			array_shift($listePJ);
 			$file_folder = "data/uploads/pieces-jointes/"; // dossier pour charger des fichiers
 			$zip = new ZipArchive(); // Lecture librairie zip
-			$zip_name = "pieces_jointes.zip"; // nom Zip
-			if($zip->open($zip_name, ZIPARCHIVE::CREATE)!==TRUE){ // Ouverture du zip pour charger les fichiers
+			if(isset($infosPJDossier['ID_PLATEAU']) && $infosPJDossier['ID_PLATEAU'] <> NULL){
+				$zip_name = $infosPJDossier['ID_PLATEAU'].".zip"; 
+			}else{
+				$zip_name = $objetPJ.".zip"; // nom Zip
+			}
+			if($zip->open($zip_name, ZIPARCHIVE::CREATE) !== TRUE){ // Ouverture du zip pour charger les fichiers
 				$error .=  "* Création ZIP : désolé cela a échoué !";
 			}
 			
@@ -474,5 +485,21 @@ class PieceJointeController extends Zend_Controller_Action
 				unlink($zip_name);
 			}
 		}
+	}
+	
+	/*
+	* cleanStr permet de remplacer les caractères speciaux, les espaces par des "_" 
+	* et remplace les lettres accentués par des lettres sans accent
+	* @Params String $string
+	* @return String 
+	*/
+	private function _cleanStr($string) {
+		
+		$objetPJ = htmlentities($string, ENT_NOQUOTES, 'utf-8');
+		$objetPJ = preg_replace('#&([A-za-z])(?:uml|circ|tilde|acute|grave|cedil|ring);#', '\1', $objetPJ);
+		$objetPJ = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $objetPJ);
+		$objetPJ = preg_replace('#&[^;]+;#', '', $objetPJ);
+		$objetPJ = str_replace(' ', '-', $objetPJ); // Replaces all spaces with hyphens.
+		return preg_replace('/[^A-Za-z0-9\_]/', '_', $objetPJ); // Removes special chars.
 	}
 }

@@ -36,7 +36,7 @@
 	</table>
 	<form method="post" action="/piece-jointe/download-zip" id="zip_pj">
 		<input type="hidden" name="listePj" id="listePj" value="" >
-		<input type="submit" name="createzip" style="border:0px; background-color:#800040; color:#FFF; padding:10px; cursor:pointer; font-weight:bold; border-radius:5px;" value="Télécharger un ZIP" />
+		<input type="submit" name="createzip" class="btn" value="Télécharger un ZIP des PJ" />
 	</form>
 </div>
 
@@ -111,13 +111,14 @@
 		});
 		
 		//traitement zip des PJ, ajouter par Taoufik le 07/03/2022
+		//cette fonction permet de recuperer les id des PJ et les rajouter au champ cacher du formulaire de création de ZIP.
 		var listePJ = "";
 		$(".pjID").each(function(){
 			var id_pj = $(this).attr('id'); 
 			listePJ += "|"+id_pj;
 			console.log(listePJ);
 		})
-		
+		//add au champ caché
 		$("#listePj").val(listePJ);
 		
 		

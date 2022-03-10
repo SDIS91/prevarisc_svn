@@ -456,8 +456,8 @@ class PieceJointeController extends Zend_Controller_Action
 			array_shift($listePJ);
 			$file_folder = "data/uploads/pieces-jointes/"; // dossier pour charger des fichiers
 			$zip = new ZipArchive(); // Lecture librairie zip
-			if(isset($infosPJDossier['ID_PLATEAU']) && $infosPJDossier['ID_PLATEAU'] <> NULL){
-				$zip_name = $infosPJDossier['ID_PLATEAU'].".zip"; 
+			if(isset($infosPJDossier['ID_PLATAU']) && $infosPJDossier['ID_PLATAU'] <> NULL){
+				$zip_name = $infosPJDossier['ID_PLATAU'].".zip"; 
 			}else{
 				$zip_name = $objetPJ.".zip"; // nom Zip
 			}
@@ -465,14 +465,11 @@ class PieceJointeController extends Zend_Controller_Action
 				$error .=  "* Création ZIP : désolé cela a échoué !";
 			}
 			
-			//liste des extension possible des PJ
-			$tab_extension = array('pdf','PDF','doc','DOC','xls','XLS','csv','CSV','pps','PPS','ppt','PPT','jpg','JPG','odt','ODT','zip','ZIP','png','PNG','rtf','RTF','docx','DOCX');
 			foreach($listePJ as $file){
-				foreach($tab_extension as $extension){
-					$nom_pj = $file_folder.$file.'.'.$extension;
-					if (file_exists($nom_pj)) {
-						$zip->addFile($nom_pj,$file.'.'.$extension); // Ajout des fichiers dans le zip
-					}
+				$namePJ = $DBpj->infosPiecesJointes($file);
+				$nom_pj = $file_folder.$namePJ;
+				if (file_exists($nom_pj)) {
+					$zip->addFile($nom_pj,$namePJ); // Ajout des fichiers dans le zip
 				}
 			}
 			$zip->close();

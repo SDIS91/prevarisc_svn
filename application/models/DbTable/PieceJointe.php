@@ -107,10 +107,28 @@
             return $desc;
         }
 		
+		/*
+        * infosDossierPiece : les infos d'un dossier
+        *@param INT $id_dossier
+        *@return  Array $result_infos
+        */
 		public function infosDossierPiece($id_dossier) {
 			$select = "SELECT * from dossier where dossier.ID_DOSSIER = '".$id_dossier."'";
 			$result_infos = $this->getAdapter()->fetchRow($select);
 			
 			return $result_infos;
+		}
+		
+		/*
+        * infosPiecesJointes : parmet de recuperer le nom de la PJ ecev l'extension 
+        *@param INT $id_pj
+        *@return  String $result_infos
+        */
+		
+		public function infosPiecesJointes($id_pj) {
+			$select = "SELECT * FROM `piecejointe` where ID_PIECEJOINTE = '".$id_pj."'";
+			$result_infos = $this->getAdapter()->fetchRow($select);
+			
+			return $result_infos['ID_PIECEJOINTE'].$result_infos['EXTENSION_PIECEJOINTE'];
 		}
     }

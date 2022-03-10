@@ -332,6 +332,11 @@ class Service_Search
                 $this->setCriteria($select, "dossierpreventionniste.ID_PREVENTIONNISTE", $criterias['preventionniste']);
             }
 
+            // Critères : idplatau
+            if (isset($criterias['idplatau']) && $criterias['idplatau'] !== null){
+                $this->setCriteria($select, "d.ID_PLATAU", $criterias['idplatau'], false);
+            }
+
             if (isset($criterias['commune']) && $criterias['commune'] !== null){
                     $this->setCriteria($select, "ea.NUMINSEE_COMMUNE", $criterias['commune']);
             }

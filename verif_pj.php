@@ -38,7 +38,7 @@ $lfp = fopen($logfile, $logmode);
 
 //$files = scandir($path);
 
-$result = $connect -> query("SELECT * FROM `piecejointe` WHERE `EXTENSION_PIECEJOINTE` IS NOT NULL");
+$result = $connect -> query("SELECT pj.`ID_PIECEJOINTE`, pj.`EXTENSION_PIECEJOINTE`, pj.`NOM_PIECEJOINTE`, pj.`DESCRIPTION_PIECEJOINTE`, dp.ID_DOSSIER FROM `piecejointe` pj JOIN dossierpj dp on (pj.`ID_PIECEJOINTE` = dp.ID_PIECEJOINTE) WHERE `EXTENSION_PIECEJOINTE` IS NOT NULL ");
 
 fwrite($lfp, "******Les PJ dans la base mais qui n'ont pas de fichier physique !******  \n\n");
 fwrite($lfp, "\nStarted at $start\n");
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
 		$nom_pj = $path.'/'.$row['ID_PIECEJOINTE'].$row['EXTENSION_PIECEJOINTE'];
 		if (file_exists($nom_pj) !== true) {
-			fwrite($lfp, "- ID_PIECEJOINTE : ".$row['ID_PIECEJOINTE']. "     Nom ===> ".$row['NOM_PIECEJOINTE']." Déscription ======> ".$row['DESCRIPTION_PIECEJOINTE']."\n");
+			fwrite($lfp, "- ID_PIECEJOINTE : ".$row['ID_PIECEJOINTE']. "     ID_DOSSIER  ".$row['ID_DOSSIER']."   Nom ===> ".$row['NOM_PIECEJOINTE']." Déscription ======> ".$row['DESCRIPTION_PIECEJOINTE']."\n");
 			print_r("***Not Existe : ".$row['ID_PIECEJOINTE'].$row['EXTENSION_PIECEJOINTE']." <br>");
 		}
 		/*

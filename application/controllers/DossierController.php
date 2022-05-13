@@ -132,11 +132,11 @@ private $listeChamps = array(
             "116"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
 	//Rejet du service instructeur (requete dans la base de données) : ajouter le 08/12/2021 par TM
 	//INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Rejet du service instructeur', '1', 24);
-			"123" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION"),
+			"123" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
 			
-	//Rejet du service instructeur (requete dans la base de données) : ajouter le 18/02/2022 par TM
+	//Arrêté du maire pris sans avis du SDIS: ajouter le 18/02/2022 par TM
 	//INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Arrêté du maire pris sans avis du SDIS', '1', 25);
-			"124" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION"),
+			"124" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
 			
 //Ajouté par Taoufik le 21/07/2020) fin
 //Visite de commission			

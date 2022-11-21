@@ -74,8 +74,14 @@
 
                 </dd>
                 <?php endif ?>
+				
+				<?php if ($this->etablissement['informations']["GE4_ETABLISSEMENTINFORMATIONS"] == '1') : ?>
+				<dt>GE4</dt>
+				<dd>
+                    <p>Appliqué</p>
+                </dd>
+				<?php endif ?>
             </dl>
-
             <!-- Activités de l'établissement -->
             <?php if(in_array($this->etablissement['informations']['ID_GENRE'], array(2, 3))) : ?>
             <h4 class='h4_subtitle'>Activités <?php if( $this->etablissement['informations']["LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS"] && $this->etablissement['informations']['ID_GENRE'] == 2) echo "<span class='badge badge-info pull-right'>Présence de locaux à sommeil</span>" ?></h4>

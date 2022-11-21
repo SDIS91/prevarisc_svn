@@ -124,6 +124,14 @@
                         <input type='number' class="input-small" name='PERIODICITE_ETABLISSEMENTINFORMATIONS' value='<?php echo $this->etablissement['informations']["PERIODICITE_ETABLISSEMENTINFORMATIONS"] ?>' />
                     </div>
                 </dd>
+				
+				<dt class='champs champ_ge4'>GE4 ?</dt>
+                <dd class='champs champ_ge4'>
+                    <p>
+                        <input type='hidden' name='GE4_ETABLISSEMENTINFORMATIONS' value='0' />
+                        <input type='checkbox' name='GE4_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["GE4_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
+                    </p>
+                </dd>
             </dl>
 
             <h4 class='champ_types champs h4_subtitle'>Activités <a href='#' style='font-size: 0.85em; float: right; font-weight: normal;' onclick="time = Date.now(); $('#prototype_types_activites_secondaires').clone().appendTo( $('#activite_ul') ).removeClass('hide prototypes').attr('id', '').find('input, select').each(function() {$(this).attr('name', $(this).attr('name').replace(/-1/gi, time)); }); $('#activite_ul li:last select').change(); return false;">Ajouter un type et une activité secondaire</a></h4>
@@ -657,7 +665,7 @@
 
                 // Établissement
                 case '2':
-                    $('.champ_categorie, .champ_periodicite, .champ_types, .champ_effectifs, .champ_plans, .champ_adresse, .champ_commission, .champ_localsommeil, .champ_donnees_pratiques, .champ_droitpublic').show();
+                    $('.champ_categorie, .champ_periodicite, .champ_types, .champ_effectifs, .champ_plans, .champ_adresse, .champ_commission, .champ_localsommeil, .champ_donnees_pratiques, .champ_droitpublic, .champ_ge4').show();
                     break;
 
                 // Cellule

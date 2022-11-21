@@ -767,6 +767,7 @@ class Service_Etablissement implements Service_Interface_Etablissement
             $informations->ID_STATUT = isset($data['ID_STATUT']) ? $data['ID_STATUT'] : 1;
             $informations->UTILISATEUR_ETABLISSEMENTINFORMATIONS = Zend_Auth::getInstance()->getIdentity()['ID_UTILISATEUR'];
             $informations->ID_ETABLISSEMENT = $etablissement->ID_ETABLISSEMENT;
+			$informations->GE4_ETABLISSEMENTINFORMATIONS = (int) $data['GE4_ETABLISSEMENTINFORMATIONS'];
 
             $informations->save();
 

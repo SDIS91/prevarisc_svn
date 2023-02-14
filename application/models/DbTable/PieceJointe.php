@@ -120,7 +120,7 @@
 		}
 		
 		/*
-        * infosPiecesJointes : parmet de recuperer le nom de la PJ ecev l'extension 
+        * infosPiecesJointes : parmet de recuperer le nom de la PJ avec l'extension pour le telechargement
         *@param INT $id_pj
         *@return  String $result_infos
         */

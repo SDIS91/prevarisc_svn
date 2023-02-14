@@ -1,0 +1,39 @@
+<?php if(count($this -> data) > 0 ) : ?>
+    <?php foreach($this -> data as $commission) : ?>
+        <?php if(count($commission['dossansdate']) > 0 ) : ?>
+            <p class="lead" style="font-size:1.2em; margin-bottom: 0px; width: 35%">
+                <?php echo strtoupper($commission['LIBELLE_COMMISSION']) . ' (' . count($commission['dossansdate']) . ')'; ?>
+            </p>
+            <?php foreach($commission['dossansdate'] as $dossier) : ?>
+                <?php $dateFormatter = new DateTime($dossier['DATEINSERT_DOSSIER']); ?>
+                <ul class="recherche_liste unstyled no_slide">
+                  <li id="<?php echo $dossier['ID_DOSSIER']; ?>" class="dossier">
+                    <div class="pull-left">
+                        <span class="doss-nom">
+                            <a href="/dossier/index/id/<?php echo $dossier['ID_DOSSIER']; ?>" title="<?php echo $dossier['OBJET_DOSSIER']; ?>">
+                                <?php echo $dossier['OBJET_DOSSIER']; ?>
+                            </a>
+                        </span>
+                        <small class="muted">
+                            ayant pour date de création le <?php echo $dateFormatter -> format('d/m/Y'); ?>
+                            <?php if(!empty($dossier['SERVICEINSTRUC_DOSSIER'])) : ?>
+                                - <?php echo $dossier['SERVICEINSTRUC_DOSSIER']; ?>
+                            <?php endif ?>
+                            <?php if(!empty($dossier['preventionniste'])) : ?>
+                                - <em><?php echo $dossier['preventionniste']; ?></em>
+                            <?php endif ?>
+                        </small>
+                    </div>
+                  </li>
+                </ul>
+            <?php endforeach ?>
+        <?php endif ?>
+    <?php endforeach ?>
+<?php else: ?>
+    <p class='muted'><small>Aucune commission</small></p>
+<?php endif ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#<?php echo $this->id ?> .panel-heading").append(' (<?php echo count($this->data) ?>)');
+    });
+</script>

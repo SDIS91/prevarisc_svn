@@ -1,8 +1,0 @@
-Dans le cas des messages d'erreurs "non autorisé" il faut toujours vérifier les droits par groupe et si on 
-a ajouter les ressources (problème vu pendant la mise en prod de prevarisc, suite à l'ajout de GENRE fluvial ....)
-
-- dans le cas d'un problème de  "Cannot read file /home/www/html/prevarisc/public/../public/data/uploads/pieces-jointes/56663.pdf"
-2 possibiltés : 
-* ou bien l'extension du fichier est majuscule, donc il faut juste renommer l'extension de la pièce jointe en minuscule.
-* ou bien la pièce jointe n'existe pas (cas des anciens établissements ERP) on cherche dans le dossier M:\SRV-DIR\GSIC\Interne\06.S_LOGICIEL_PROJET_DEV\06_03.P_PROJET_DEV\02_PROJETS_TERMINES\prevarisc\SRV_DIREC_PIECES_JOINTES\pieces-jointes
-et on le rajoute dans le dossier PJ sur le serveur.

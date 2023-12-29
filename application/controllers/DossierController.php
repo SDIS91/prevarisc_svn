@@ -139,7 +139,7 @@ private $listeChamps = array(
 			"124" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
 			
 //Ajouté par Taoufik le 21/07/2020) fin
-//Visite de commission			
+//Visite de commission
 	
    //Réception de travaux
             "20"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
@@ -151,6 +151,8 @@ private $listeChamps = array(
             "24"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Ouverture
             "47"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
+	//visite d'ouverture de boutique
+			"125"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Exceptionnelle de levée d'avis défavorable
             "73"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Exceptionnelle de levée de sans avis

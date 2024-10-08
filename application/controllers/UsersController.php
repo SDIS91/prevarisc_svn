@@ -466,7 +466,7 @@ class UsersController extends Zend_Controller_Action
                                 $name .= $this->_request->groupements . '_';
                                 $name .= $this->_request->commune;
                                 
-                                $text = 'Genres Linéaire - Fluvial (';
+                                $text = 'Genres Linéaire - Fluvial, première lettre F (';
                                 $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
                                 $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
                                 $text .= ')';
@@ -476,7 +476,7 @@ class UsersController extends Zend_Controller_Action
                                 $name .= $this->_request->groupements . '_';
                                 $name .= $this->_request->commune;
                                 
-                                $text = 'Linéaire - Transport guidé (';
+                                $text = 'Linéaire - Transport guidé, première lettre G (';
                                 $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
                                 $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
                                 $text .= ')';
@@ -486,7 +486,7 @@ class UsersController extends Zend_Controller_Action
                                 $name .= $this->_request->groupements . '_';
                                 $name .= $this->_request->commune;
                                 
-                                $text = 'Linéaire - Routier (';
+                                $text = 'Linéaire - Routier, première lettre R (';
                                 $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
                                 $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
                                 $text .= ')';
@@ -506,7 +506,7 @@ class UsersController extends Zend_Controller_Action
                                 $name .= $this->_request->groupements . '_';
                                 $name .= $this->_request->commune;
                                 
-                                $text = 'Linéaire - Fluides (';
+                                $text = 'Linéaire - Fluides, première lettre L (';
                                 $text .= ($this->_request->groupements == 0 ? 'Ignorer les groupements' : 'Sur les groupements de l\'utilisateur') . ' - ';
                                 $text .= ($this->_request->commune == 0 ? 'Ignorer la commune' : 'Sur la commune de l\'utilisateur');
                                 $text .= ')';

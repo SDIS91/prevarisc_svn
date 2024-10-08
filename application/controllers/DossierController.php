@@ -502,7 +502,7 @@ private $listeChamps = array(
             $this->view->infosDossier = $DBdossier->find($idDossier)->current();
 
             // Added by george: recuperation de REFCOURRIER_DOSSIER sinon valeur incrementee
-            $annee = new Zend_Date();
+            /*$annee = new Zend_Date();
             $year = $annee -> get(Zend_Date::YEAR);
             $DBrefCourrier = $DBdossier -> maxReferenceCourrier($year);
             if (in_array(null, $DBrefCourrier)) {
@@ -514,8 +514,8 @@ private $listeChamps = array(
             if (is_null($this -> view -> infosDossier['REFCOURRIER_DOSSIER'])) {
                 $increment = $DBrefCourrier;
                 $this -> view -> increment = $increment;
-            }
-
+            }*/
+            $this -> view -> increment = $this -> view -> infosDossier['REFCOURRIER_DOSSIER'];
             //On verifie les éléments masquant l'avis et la date de commission/visite pour les afficher ou non
             //document manquant - absence de quorum - hors delai - ne peut se prononcer - differe l'avis
             $absQuorum = $this->view->infosDossier['ABSQUORUM_DOSSIER'];
@@ -1026,9 +1026,10 @@ private $listeChamps = array(
                     $nouveauDossier->SERVICEINSTRUC_DOSSIER = $this->_getParam("servInstVille");
                 }
             }
+			$test = $DBdossier->find($this->_getParam('idDossier'))->current();
             // Added by george: renseigner la reference courrier lors de la creation
 			//modifié par Taoufik le 22/09/2020 suite à l'email de Karine pour Ajouter le Numéro Chrono SDIS 91 aux type "Avis de prévision" et "Courrier/courriel"
-            if (($this -> _getParam("TYPE_DOSSIER") == 1 || $this -> _getParam("TYPE_DOSSIER") == 5  || $this -> _getParam("TYPE_DOSSIER") == 9) && !$this -> _getParam("REFCOURRIER_DOSSIER")) {
+            if (is_null($test['REFCOURRIER_DOSSIER']) && ($this -> _getParam("TYPE_DOSSIER") == 1 || $this -> _getParam("TYPE_DOSSIER") == 5  || $this -> _getParam("TYPE_DOSSIER") == 9) && !$this -> _getParam("REFCOURRIER_DOSSIER")) {
                 $annee = new Zend_Date();
                 $year = $annee -> get(Zend_Date::YEAR);
                 $DBrefCourrier = $DBdossier -> maxReferenceCourrier($year);

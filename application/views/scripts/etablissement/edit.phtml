@@ -1,13 +1,13 @@
 <form id='etablissement' class="<?php echo $this->add ? 'add' : 'edit' ?>" action='<?php echo $this->url(array('action' => $this->add ? 'add' : 'edit')) ?>' method='post' >
 
-    <?php if($this->add) : ?>
-    <div class='pull-right' >
+    <?php if ($this->add) : ?>
+    <div class='pull-right'>
         <input type='submit' class="btn btn-success" value="Ajouter l'établissement">
         <input type="hidden" name="date" value='<?php echo date("Y-m-d H:i:s") ?>'>
     </div>
     <h3>Ajout d'un établissement</h3>
     <?php else : ?>
-    <div class='pull-right' >
+    <div class='pull-right'>
         <div class="btn-group">
             <a class='btn' href="<?php echo $this->url(array('action' => 'index')) ?>">Annuler la modification</a>
             <input type='submit' class="btn btn-success" value='Sauvegarder'>
@@ -22,7 +22,9 @@
         <div class='span6'>
             <h4 class='h4_subtitle'>Général</h4>
             <div>
-                <input style='width: 100%; box-sizing: border-box; height: 2.5em;' type='text' placeholder="Libellé de l'établissement" name='LIBELLE_ETABLISSEMENTINFORMATIONS' value='<?php if ( $this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"] ) echo htmlspecialchars($this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES) ?>' />
+                <input style='width: 100%; box-sizing: border-box; height: 2.5em;' type='text' placeholder="Libellé de l'établissement" name='LIBELLE_ETABLISSEMENTINFORMATIONS' value='<?php if ($this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"]) {
+                    echo htmlspecialchars($this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES);
+                } ?>' />
 
                 <dl class='dl-horizontal'>
                     <!-- Numéro d'identification -->
@@ -36,10 +38,12 @@
                     <!-- Statut de l'établissement -->
                     <dt>Statut</dt>
                     <dd>
-                        <select name='ID_STATUT' <?php if (!$this->is_allowed_change_statut) echo "readonly" ?>>
-                            <?php foreach( $this->DB_statut as $item ) : ?>
+                        <select name='ID_STATUT' <?php if (!$this->is_allowed_change_statut) {
+                            echo "readonly";
+                        } ?>>
+                            <?php foreach ($this->DB_statut as $item) : ?>
                                 <option value='<?php echo $item["ID_STATUT"] ?>'
-                                    <?php if($this->etablissement && $item["ID_STATUT"] == $this->etablissement['informations']["ID_STATUT"]): ?>
+                                    <?php if ($this->etablissement && $item["ID_STATUT"] == $this->etablissement['informations']["ID_STATUT"]): ?>
                                         selected
                                     <?php elseif (!$this->is_allowed_change_statut): ?>
                                         disabled
@@ -58,8 +62,10 @@
                 <dt>Genre</dt>
                 <dd>
                     <select name='ID_GENRE'>
-                        <?php foreach( $this->DB_genre as $genre ) : ?>
-                            <option value='<?php echo $genre["ID_GENRE"] ?>' <?php if( $genre["ID_GENRE"] == $this->etablissement['informations']["ID_GENRE"] ) echo "selected" ?> >
+                        <?php foreach ($this->DB_genre as $genre) : ?>
+                            <option value='<?php echo $genre["ID_GENRE"] ?>' <?php if ($genre["ID_GENRE"] == $this->etablissement['informations']["ID_GENRE"]) {
+                                echo "selected";
+                            } ?> >
                                 <?php echo $genre["LIBELLE_GENRE"] ?>
                             </option>
                         <?php endforeach ?>
@@ -70,15 +76,19 @@
                 <dd class="champ_icpe champs">
                     <p>
                         <input type='hidden' name='ICPE_ETABLISSEMENTINFORMATIONS' value='0' />
-                        <input type='checkbox' name='ICPE_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["ICPE_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
+                        <input type='checkbox' name='ICPE_ETABLISSEMENTINFORMATIONS' value='1' <?php if ($this->etablissement['informations']["ICPE_ETABLISSEMENTINFORMATIONS"]) {
+                            echo "checked";
+                        } ?> />
                     </p>
                 </dd>
-				
+
                 <dt class="champ_categorie champs">Catégorie</dt>
                 <dd class="champ_categorie champs">
                     <select name='ID_CATEGORIE'>
-                        <?php foreach( $this->DB_categorie as $item ) : ?>
-                            <option value='<?php echo $item["ID_CATEGORIE"] ?>' <?php if( $item["ID_CATEGORIE"] == $this->etablissement['informations']["ID_CATEGORIE"] ) echo "selected" ?> >
+                        <?php foreach ($this->DB_categorie as $item) : ?>
+                            <option value='<?php echo $item["ID_CATEGORIE"] ?>' <?php if ($item["ID_CATEGORIE"] == $this->etablissement['informations']["ID_CATEGORIE"]) {
+                                echo "selected";
+                            } ?> >
                                 <?php echo $item["LIBELLE_CATEGORIE"] ?>
                             </option>
                         <?php endforeach ?>
@@ -88,8 +98,10 @@
                 <dt class="champ_classement champs">Classement</dt>
                 <dd class="champ_classement champs">
                     <select name='ID_CLASSEMENT'>
-                        <?php foreach( $this->DB_classement as $item ) : ?>
-                            <option value='<?php echo $item["ID_CLASSEMENT"] ?>' <?php if( $item["ID_CLASSEMENT"] == $this->etablissement['informations']["ID_CLASSEMENT"] ) echo "selected" ?>>
+                        <?php foreach ($this->DB_classement as $item) : ?>
+                            <option value='<?php echo $item["ID_CLASSEMENT"] ?>' <?php if ($item["ID_CLASSEMENT"] == $this->etablissement['informations']["ID_CLASSEMENT"]) {
+                                echo "selected";
+                            } ?>>
                                 <?php echo $item["LIBELLE_CLASSEMENT"] ?>
                             </option>
                         <?php endforeach ?>
@@ -99,8 +111,10 @@
                 <dt class="champ_famille champs">Famille</dt>
                 <dd class="champ_famille champs">
                     <select name='ID_FAMILLE'>
-                        <?php foreach( $this->DB_famille as $item ) : ?>
-                            <option value='<?php echo $item["ID_FAMILLE"] ?>' <?php if( $item["ID_FAMILLE"] == $this->etablissement['informations']["ID_FAMILLE"] ) echo "selected" ?> >
+                        <?php foreach ($this->DB_famille as $item) : ?>
+                            <option value='<?php echo $item["ID_FAMILLE"] ?>' <?php if ($item["ID_FAMILLE"] == $this->etablissement['informations']["ID_FAMILLE"]) {
+                                echo "selected";
+                            } ?> >
                                 <?php echo $item["LIBELLE_FAMILLE"] ?>
                             </option>
                         <?php endforeach ?>
@@ -110,8 +124,10 @@
                 <dt class="champ_classe champs">Classe</dt>
                 <dd class="champ_classe champs">
                     <select name='ID_CLASSE'>
-                        <?php foreach( $this->DB_classe as $item ) : ?>
-                            <option value='<?php echo $item["ID_CLASSE"] ?>' <?php if( $item["ID_CLASSE"] == $this->etablissement['informations']["ID_CLASSE"] ) echo "selected" ?> >
+                        <?php foreach ($this->DB_classe as $item) : ?>
+                            <option value='<?php echo $item["ID_CLASSE"] ?>' <?php if ($item["ID_CLASSE"] == $this->etablissement['informations']["ID_CLASSE"]) {
+                                echo "selected";
+                            } ?> >
                                 <?php echo $item["LIBELLE_CLASSE"] ?>
                             </option>
                         <?php endforeach ?>
@@ -124,12 +140,14 @@
                         <input type='number' class="input-small" name='PERIODICITE_ETABLISSEMENTINFORMATIONS' value='<?php echo $this->etablissement['informations']["PERIODICITE_ETABLISSEMENTINFORMATIONS"] ?>' />
                     </div>
                 </dd>
-				
-				<dt class='champs champ_ge4'>GE4 ?</dt>
+
+                <dt class='champs champ_ge4'>GE4 ?</dt>
                 <dd class='champs champ_ge4'>
                     <p>
                         <input type='hidden' name='GE4_ETABLISSEMENTINFORMATIONS' value='0' />
-                        <input type='checkbox' name='GE4_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["GE4_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
+                        <input type='checkbox' name='GE4_ETABLISSEMENTINFORMATIONS' value='1' <?php if ($this->etablissement['informations']["GE4_ETABLISSEMENTINFORMATIONS"]) {
+                            echo "checked";
+                        } ?> />
                     </p>
                 </dd>
             </dl>
@@ -144,17 +162,21 @@
                         <li>
                             <select name='ID_TYPE' style='width: 85px' class='type_select'>
                                 <option value=''>Choisir un type</option>
-                                <?php foreach( $this->DB_type as $item ) : ?>
-                                    <option value='<?php echo $item["ID_TYPE"] ?>' <?php if( $item["ID_TYPE"] == $this->etablissement['informations']["ID_TYPE"] ) echo "selected" ?> >
+                                <?php foreach ($this->DB_type as $item) : ?>
+                                    <option value='<?php echo $item["ID_TYPE"] ?>' <?php if ($item["ID_TYPE"] == $this->etablissement['informations']["ID_TYPE"]) {
+                                        echo "selected";
+                                    } ?> >
                                         <?php echo $item["LIBELLE_TYPE"] ?>
                                     </option>
                                 <?php endforeach ?>
                             </select>
                             <select id='activite_principal_select' class='activite_select' name='ID_TYPEACTIVITE' style='width: 70%' >
                                 <option value=''>Choisir un type d'activité</option>
-                                <?php foreach( $this->DB_activite as $item ) : ?>
-                                    <?php if( $item["ID_TYPE"] == $this->etablissement['informations']["ID_TYPE"] ) : ?>
-                                        <option value='<?php echo $item["ID_TYPEACTIVITE"] ?>' <?php if( $item["ID_TYPEACTIVITE"] == $this->etablissement['informations']["ID_TYPEACTIVITE"] ) echo "selected" ?> >
+                                <?php foreach ($this->DB_activite as $item) : ?>
+                                    <?php if ($item["ID_TYPE"] == $this->etablissement['informations']["ID_TYPE"]) : ?>
+                                        <option value='<?php echo $item["ID_TYPEACTIVITE"] ?>' <?php if ($item["ID_TYPEACTIVITE"] == $this->etablissement['informations']["ID_TYPEACTIVITE"]) {
+                                            echo "selected";
+                                        } ?> >
                                             <?php echo $item["LIBELLE_ACTIVITE"] ?>
                                         </option>
                                     <?php endif ?>
@@ -164,8 +186,8 @@
 
                         <!-- Types et activités secondaires -->
                         <?php echo $this->partial('etablissement/partials/partial-type-activites-secondaire.phtml', array('types' => $this->DB_type, 'activites' => $this->DB_activite)) ?>
-                        <?php if($this->etablissement['types_activites_secondaires']) : ?>
-                        <?php foreach($this->etablissement['types_activites_secondaires'] as $type_activite_secondaire) : ?>
+                        <?php if ($this->etablissement['types_activites_secondaires']) : ?>
+                        <?php foreach ($this->etablissement['types_activites_secondaires'] as $type_activite_secondaire) : ?>
                             <?php echo $this->partial('etablissement/partials/partial-type-activites-secondaire.phtml', array('type_activite_secondaire' => $type_activite_secondaire, 'types' => $this->DB_type, 'activites' => $this->DB_activite)) ?>
                         <?php endforeach ?>
                         <?php endif ?>
@@ -177,7 +199,9 @@
                 <dd>
                     <p>
                         <input type='hidden' name='R12320_ETABLISSEMENTINFORMATIONS' value='0' />
-                        <input type='checkbox' name='R12320_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["R12320_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
+                        <input type='checkbox' name='R12320_ETABLISSEMENTINFORMATIONS' value='1' <?php if ($this->etablissement['informations']["R12320_ETABLISSEMENTINFORMATIONS"]) {
+                            echo "checked";
+                        } ?> />
                     </p>
                 </dd>
 
@@ -186,7 +210,9 @@
                 <dd class='champs champ_droitpublic'>
                     <p>
                         <input type='hidden' name='DROITPUBLIC_ETABLISSEMENTINFORMATIONS' value='0' />
-                        <input type='checkbox' name='DROITPUBLIC_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["DROITPUBLIC_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> />
+                        <input type='checkbox' name='DROITPUBLIC_ETABLISSEMENTINFORMATIONS' value='1' <?php if ($this->etablissement['informations']["DROITPUBLIC_ETABLISSEMENTINFORMATIONS"]) {
+                            echo "checked";
+                        } ?> />
                     </p>
                 </dd>
 
@@ -194,8 +220,12 @@
                 <dt class='champs champ_localsommeil'>Local à sommeil ?</dt>
                 <dd class='champs champ_localsommeil'>
                     <p>
-                        <input type='radio' name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS' value='0' <?php if( !$this->add ) echo "checked" ?> /> Non
-                        <input type='radio' name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS' value='1' <?php if( $this->etablissement['informations']["LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS"] ) echo "checked" ?> /> Oui
+                        <input type='radio' name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS' value='0' <?php if (!$this->add) {
+                            echo "checked";
+                        } ?> /> Non
+                        <input type='radio' name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS' value='1' <?php if ($this->etablissement['informations']["LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS"]) {
+                            echo "checked";
+                        } ?> /> Oui
                     </p>
                 </dd>
             </dl>
@@ -216,8 +246,8 @@
                 <tbody>
                     <!-- Rubriques -->
                     <?php echo $this->partial('etablissement/partials/partial-rubrique.phtml') ?>
-                    <?php if($this->etablissement['rubriques']) : ?>
-                    <?php foreach($this->etablissement['rubriques'] as $rubrique) : ?>
+                    <?php if ($this->etablissement['rubriques']) : ?>
+                    <?php foreach ($this->etablissement['rubriques'] as $rubrique) : ?>
                         <?php echo $this->partial('etablissement/partials/partial-rubrique.phtml', array('rubrique' => $rubrique)) ?>
                     <?php endforeach ?>
                     <?php endif ?>
@@ -266,8 +296,8 @@
                 </thead>
                 <tbody>
                     <?php echo $this->partial('etablissement/partials/partial-plan.phtml', array('types_plans' => $this->DB_typesplan)) ?>
-                    <?php if($this->etablissement['plans']) : ?>
-                    <?php foreach($this->etablissement['plans'] as $plan) : ?>
+                    <?php if ($this->etablissement['plans']) : ?>
+                    <?php foreach ($this->etablissement['plans'] as $plan) : ?>
                         <?php echo $this->partial('etablissement/partials/partial-plan.phtml', array('plan' => $plan, 'types_plans' => $this->DB_typesplan)) ?>
                     <?php endforeach ?>
                     <?php endif ?>
@@ -275,13 +305,21 @@
             </table>
 
             <!-- Etablissement lié -->
-            <h4 class='h4_subtitle etablissements_lies'>Établissements liés <?php if($this->etablissement['general']) : ?> <a id='add_etablissement' href='/etablissement/add?pere=<?php echo $this->etablissement['general']['ID_ETABLISSEMENT'] ?>&libelle=<?php echo htmlspecialchars($this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES) ?>' class='edit' style='font-size: 0.85em; float: right; font-weight: normal;' >Créer un établissement enfant</a> <?php endif ?></h4>
+            <h4 class='h4_subtitle etablissements_lies'>Établissements liés <?php if ($this->etablissement['general']) : ?> <a id='add_etablissement' href='/etablissement/add?pere=<?php echo $this->etablissement['general']['ID_ETABLISSEMENT'] ?>&libelle=<?php echo htmlspecialchars($this->etablissement['informations']["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES) ?>' class='edit' style='font-size: 0.85em; float: right; font-weight: normal;' >Créer un établissement enfant</a> <?php endif ?></h4>
             <dl class='dl-horizontal etablissements_lies' >
                 <dt class="etablissement_pere">Père de l'établissement</dt>
                 <dd class="etablissement_pere">
-                    Nom de l'établissement : <strong><?php if(count($this->etablissement['parents']) > 0) echo htmlspecialchars(end($this->etablissement['parents'])["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES); elseif( isset($_GET["libelle"]) ) echo htmlspecialchars($_GET["libelle"], ENT_QUOTES)  ?></strong><br/>
+                    Nom de l'établissement : <strong><?php if (count($this->etablissement['parents']) > 0) {
+                        echo htmlspecialchars(end($this->etablissement['parents'])["LIBELLE_ETABLISSEMENTINFORMATIONS"], ENT_QUOTES);
+                    } elseif (isset($_GET["libelle"])) {
+                        echo htmlspecialchars($_GET["libelle"], ENT_QUOTES);
+                    } ?></strong><br/>
                     <input placeholder="Libellé de l'établissement père ..." type='text' style='width: 100%; box-sizing: border-box; height: 2.5em' />
-                    <input type='hidden' name='ID_PERE' value='<?php if(count($this->etablissement['parents']) > 0) echo end($this->etablissement['parents'])["ID_ETABLISSEMENT"]; elseif( isset($_GET["pere"]) ) echo $_GET["pere"] ?>' />
+                    <input type='hidden' name='ID_PERE' value='<?php if (count($this->etablissement['parents']) > 0) {
+                        echo end($this->etablissement['parents'])["ID_ETABLISSEMENT"];
+                    } elseif (isset($_GET["pere"])) {
+                        echo $_GET["pere"];
+                    } ?>' />
                 </dd>
 
                 <dt class="etablissements_enfants">Enfants de l'établissement</dt>
@@ -295,8 +333,8 @@
                         </thead>
                         <tbody>
                             <?php echo $this->partial('etablissement/partials/partial-etablissement-enfant.phtml') ?>
-                            <?php if($this->etablissement['etablissement_lies']) : ?>
-                            <?php foreach( $this->etablissement['etablissement_lies'] as $etablissement ) : ?>
+                            <?php if ($this->etablissement['etablissement_lies']) : ?>
+                            <?php foreach ($this->etablissement['etablissement_lies'] as $etablissement) : ?>
                                 <?php echo $this->partial('etablissement/partials/partial-etablissement-enfant.phtml', array('etablissement' => $etablissement)) ?>
                             <?php endforeach ?>
                             <?php endif ?>
@@ -314,7 +352,7 @@
 
         <!-- Carte de l'emplacement de l'établissement / informations  -->
         <div class='span6'>
-            <h4 class="champ_adresse champs h4_subtitle">Adresse <a style='font-size: 0.85em; float: right; font-weight: normal;' data-toggle="modal" data-backdrop="false" href="#adresse-modal">Ajouter une adresse</a></h4>
+            <h4 class="champ_adresse champs h4_subtitle">Adresse <a style='font-size: 0.85em; float: right; font-weight: normal;' data-toggle="modal" data-backdrop="static" href="#adresse-modal-ajout">Ajouter une adresse</a></h4>
             <table id='adresses' class='table table-condensed champ_adresse champs'>
                 <thead>
                     <tr>
@@ -325,8 +363,8 @@
                 </thead>
                 <tbody>
                     <?php echo $this->partial('etablissement/partials/partial-adresse.phtml') ?>
-                    <?php if($this->etablissement['adresses']) : ?>
-                        <?php foreach( $this->etablissement['adresses'] as $adresse ) : ?>
+                    <?php if ($this->etablissement['adresses']) : ?>
+                        <?php foreach ($this->etablissement['adresses'] as $adresse) : ?>
                             <?php echo $this->partial('etablissement/partials/partial-adresse.phtml', array('adresse' => $adresse)) ?>
                         <?php endforeach ?>
                     <?php endif ?>
@@ -360,10 +398,12 @@
                 <dt class="champ_commission champs">Commission</dt>
                 <dd class="champ_commission champs">
                     <select name='ID_COMMISSION' class="input-xlarge" >
-                        <?php foreach($this->DB_commission as $commission_type) : ?>
+                        <?php foreach ($this->DB_commission as $commission_type) : ?>
                             <optgroup label="<?php echo $commission_type['LIBELLE'] ?>">
-                                <?php foreach($commission_type['ARRAY'] as $item ) : ?>
-                                    <option value='<?php echo $item["ID_COMMISSION"] ?>' <?php if( $item["ID_COMMISSION"] == $this->etablissement['informations']["ID_COMMISSION"] ) echo "selected" ?> >
+                                <?php foreach ($commission_type['ARRAY'] as $item) : ?>
+                                    <option value='<?php echo $item["ID_COMMISSION"] ?>' <?php if ($item["ID_COMMISSION"] == $this->etablissement['informations']["ID_COMMISSION"]) {
+                                        echo "selected";
+                                    } ?> >
                                         <?php echo $item["LIBELLE_COMMISSION"] ?> (<?php echo $commission_type['LIBELLE'] ?>)
                                     </option>
                                 <?php endforeach ?>
@@ -384,8 +424,8 @@
                         </thead>
                         <tbody>
                             <?php echo $this->partial('etablissement/partials/partial-preventionniste.phtml') ?>
-                            <?php if($this->etablissement['preventionnistes']) : ?>
-                            <?php foreach( $this->etablissement['preventionnistes'] as $preventionniste ) : ?>
+                            <?php if ($this->etablissement['preventionnistes']) : ?>
+                            <?php foreach ($this->etablissement['preventionnistes'] as $preventionniste) : ?>
                                 <?php echo $this->partial('etablissement/partials/partial-preventionniste.phtml', array('preventionniste' => $preventionniste)) ?>
                             <?php endforeach ?>
                             <?php endif ?>
@@ -443,7 +483,7 @@
 </div>
 
 <!-- Boite de construction d'adresse-->
-<form id="adresse-modal" class="modal hide adresse fase" action='#' method='post'>
+<form id="adresse-modal-ajout" class="modal hide adresse fade" action='#' method='post'>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -485,8 +525,8 @@
 
             <dt>Géolocalisation</dt>
             <dd>
-                <?php if($this->key_ign != null) : ?><button id="geolocme" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (Geoportail)</button><?php endif ?>
-                <?php if($this->geoconcept_url != null) : ?><button id="geolocme-geoconcept" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (Geoconcept)</button><?php endif ?>
+                <?php if ($this->key_ign != null) : ?><button type="button" id="geolocme" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (Geoportail)</button><?php endif ?>
+                <?php if ($this->geoconcept_url != null) : ?><button type="button" id="geolocme-geoconcept" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (Geoconcept)</button><?php endif ?>
                 <button id="geolocme_nominatim" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (Nominatim)</button>
                 <!-- <button id="geolocme_sdis" class='btn btn-small'><i class="icon-map-marker"></i> Géolocaliser cette adresse (SDIS91)</button>  added by george -->
                 <br/>
@@ -495,28 +535,19 @@
 
             <dt>Longitude</dt>
             <dd>
-                 <input id="addressLongitude" type='text' name='lon' />
+                <input id="addressLongitude" type='text' name='lon' maxlength="11" />
             </dd>
 
             <dt>Latitude</dt>
             <dd>
-                 <input id="addressLatitude" type='text' name='lat' />
+                <input id="addressLatitude" type='text' name='lat' maxlength="10" />
             </dd>
         </dl>
-        <?php if($this->key_ign != null): ?>
+        <?php if ($this->key_ign != null): ?>
             <div id="geoportail-container" style="height: 400px;"></div>
-            <!-- SDK Géoportail -->
-            <script src="/js/sdk-3d/GpSDK3D.js"></script>
-            <link rel="stylesheet" href="/js/sdk-3d/GpSDK3D.css" />
-            <!-- FIN SDK -->
-            <script type="text/javascript" src="/js/main.js"></script>
-            <!-- Déplacement du bouton FullScreen (sinon supperposé avec le gestionnaire de couches) -->
-            <style>
-                .ol-full-screen {right:9px; top:49px}
-            </style>
         <?php endif ?>
 
-        <?php if($this->geoconcept_url != null) : ?>
+        <?php if ($this->geoconcept_url != null) : ?>
             <div id='geoconcept-container' style="height: 400px; width: 100%"></div>
             <script type="text/javascript" src="/js/geoconcept/OpenLayers.js"></script>
             <script type="text/javascript" src="/js/geoconcept/proj4js.js"></script>
@@ -534,6 +565,8 @@
         <a href="#" data-dismiss="modal" class="btn btn-success" id='submit-adresse'>Sauvegarder</a>
     </div>
 </form>
+
+<?= $this->partial('etablissement/partials/partial-modal-edit-adresse.phtml', ['key_ign' => $this->key_ign]) ?>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -633,6 +666,7 @@
         $("form.adresse a#submit-adresse").live('click', function() {
             time = Date.now();
             node = $('#prototype_adresse').clone().prependTo( $('table.champ_adresse') ).removeClass('hide prototypes').addClass('adresse').attr('id', '');
+
             node.find('input[name="ADRESSES[-1][LON_ETABLISSEMENTADRESSE]"]').val($('form.adresse').find('input[name="lon"]').val());
             node.find('input[name="ADRESSES[-1][LAT_ETABLISSEMENTADRESSE]"]').val($('form.adresse').find('input[name="lat"]').val());
             node.find('input[name="ADRESSES[-1][NUMERO_ADRESSE]"]').val($('form.adresse').find('input[name="numero"]').val());
@@ -641,7 +675,11 @@
             node.find('input[name="ADRESSES[-1][COMPLEMENT_ADRESSE]"]').val($('form.adresse').find('input[name="complement"]').val());
             node.find('span').text($('form.adresse').find('input[name="numero"]').val() + " " + $('form.adresse').find('input[name="voie_ac"]').val() + " " + $('form.adresse').find('input[name="code_postal"]').val() + " " + $('form.adresse').find('input[name="commune_ac"]').val());
             node.find('input').each(function() {$(this).attr('name', $(this).attr('name').replace(/-1/gi, time)); });
+            node.find('#adresse').attr('id','adresse'+time)
+            node.find('.modifierAdresse').attr('data-id',time)
+
             $('form.adresse').find('button.close').click();
+            setTriggerEventModalAdresseEdit()
             return false;
         });
 
@@ -659,7 +697,7 @@
             switch($(this).find('option:selected').val()) {
                 // Site
                 case '1':
-					$('.champ_plans').show();
+                    $('.champ_plans').show();
                     $('.etablissement_pere').hide();
                     break;
 
@@ -728,19 +766,19 @@
                     $('.champ_effectifs, .effectif_public, .champ_adresse, .champ_plans').show();
                     $('.etablissements_enfants').hide();
                     break;
-				//Ajouter par Taoufik le 20/07/2020 pour le genre : 
-				//linéaire fluvial/Transport guidé/Routier
-				case '13':
-				case '14':
-				case '15':
-				//Plans : 
-				case '16':
-				//linéaire fluvial fluides
-				case '17':
-					$('.champ_effectifs, .champ_plans').show();
-					$('.etablissements_enfants').hide();
-					break;
-				
+                //Ajouter par Taoufik le 20/07/2020 pour le genre : 
+                //linéaire fluvial/Transport guidé/Routier
+                case '13':
+                case '14':
+                case '15':
+                //Plans : 
+                case '16':
+                //linéaire fluvial fluides
+                case '17':
+                    $('.champ_effectifs, .champ_plans').show();
+                    $('.etablissements_enfants').hide();
+                    break;
+                
             }
         }).change();
 
@@ -762,7 +800,7 @@
         // Actions sur le changement de catégorie
         $("select[name='ID_CATEGORIE']").change(function() {
             // Gestion de l'affichage de l'effectif justifiant le classement (uniquement pour les 5ème catégorie)
-            if($(this).val() == 5) {
+            if ($(this).val() == 5) {
                 $(".effectif_justifiant_classement").show();
             } else {
                 $(".effectif_justifiant_classement").hide().find("input").val("");
@@ -771,7 +809,7 @@
 
         // Actions sur le statut ICPE
         $("input[name='ICPE_ETABLISSEMENTINFORMATIONS']").change(function() {
-            if( $(this).is(":checked") && $("select[name='ID_GENRE'] option:selected").val() == 6 ) {
+            if ($(this).is(":checked") && $("select[name='ID_GENRE'] option:selected").val() == 6) {
                 $(".rubrique").show();
             } else {
                 $(".rubrique").hide();
@@ -780,7 +818,7 @@
 
         // Affichage ou non de l'effectif hebergé en fonction de la checkbox local sommeil
         $("input[name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS']").change(function() {
-            if( $("input[name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS'][value=1]").is(":checked") )
+            if ($("input[name='LOCALSOMMEIL_ETABLISSEMENTINFORMATIONS'][value=1]").is(":checked"))
                 $(".effectif_heberge").show();
             else
                 $(".effectif_heberge").hide();
@@ -790,8 +828,8 @@
         $("select.type_select").live("change", function() {
             activites = <?php echo Zend_Json::encode($this->DB_activite) ?>;
             $(this).next().find("option").remove();
-            for( var x in activites) {
-                if( activites[x]["ID_TYPE"] == $(this).val() ) {
+            for (var x in activites) {
+                if (activites[x]["ID_TYPE"] == $(this).val()) {
                     $(this).next().append($("<option />").val(activites[x]["ID_TYPEACTIVITE"]).text(activites[x]["LIBELLE_ACTIVITE"]));
                 }
             }
@@ -955,20 +993,27 @@
                 return item.LIBELLE_COMMUNE + " (" + item.NUMINSEE_COMMUNE + ")";
             }
         }).result(function(e, item) {
-            $("#adresse-modal input[name='code_insee']").val( item.NUMINSEE_COMMUNE );
-            $("#adresse-modal input[name='code_postal']").val( item.CODEPOSTAL_COMMUNE );
-            $("#adresse-modal input[name='voie_ac']").removeAttr('disabled');
+            const modalId = $(this).closest('form')[0].id
+
+            $(`#${modalId} input[name='code_insee']`).val( item.NUMINSEE_COMMUNE );
+            $(`#${modalId} input[name='code_postal']`).val( item.CODEPOSTAL_COMMUNE );
+            $(`#${modalId} input[name='voie_ac']`).removeAttr('disabled');
         }).click(function() {
+            const modalId = $(this).closest('form')[0].id
+
             $(this).val("");
-            $("#adresse-modal input[name='voie_ac'], #adresse-modal input[name='numero'], #adresse-modal input[name='complement']").val("").attr("disabled", true).blur();
-            $("#adresse-modal input[name='voie']").val("").blur();
+            $(`#${modalId} input[name='voie_ac'], #${modalId} input[name='numero'], #${modalId} input[name='complement']`).val("").attr("disabled", true).blur();
+            $(`#${modalId} input[name='voie']`).val("").blur();
         });
 
         // Auto complétion de la rue
         $("input[name='voie_ac']").autocomplete('/api/1.0/adresse/get_voies', {
             minChars: 2,
             cacheLength: 0,
-            extraParams: { code_insee: function(){ return $("#adresse-modal input[name='code_insee']").val() } },
+            extraParams: { code_insee: function(){
+                const modalId = $("input[name='voie_ac']").closest('form.in')[0].id
+                return $(`#${modalId} input[name='code_insee']`).val()
+            } },
             parse: function(data) {
                 return $.map(data["response"], function(row) { return {data: row,value: row.LIBELLE_RUE,result: row.LIBELLE_RUE} });
             },
@@ -976,131 +1021,139 @@
                 return item.LIBELLE_RUE + ' (code insee : ' + item.NUMINSEE_COMMUNE + ')';
             }
         }).result(function(e, item) {
-            $("#adresse-modal input[name='voie']").val( item.ID_RUE );
-            $("#adresse-modal input[name='type_voie']").val( item.ID_RUETYPE );
-            $("#adresse-modal input[name='numero'], #adresse-modal input[name='complement']").removeAttr("disabled");
+            const modalId = $(this).closest('form')[0].id
+
+            $(`#${modalId} input[name='voie']`).val( item.ID_RUE );
+            $(`#${modalId} input[name='type_voie']`).val( item.ID_RUETYPE );
+            $(`#${modalId} input[name='numero'], #${modalId} input[name='complement']`).removeAttr("disabled");
         }).click(function() {
+            const modalId = $(this).closest('form')[0].id
+
             $(this).val("");
-            $("#adresse-modal input[name='numero'], #adresse-modal input[name='complement']").val("").attr("disabled", true).blur();
+            $(`#${modalId} input[name='numero'], #${modalId} input[name='complement']`).val("").attr("disabled", true).blur();
         });
-        $('#adresse-modal').on('shown.bs.modal', function () {
-            if($('#adresse-modal .modal-body').scrollTop() !== 0) {
-                $('#adresse-modal .modal-body').scrollTop(0);
+
+        <?php if ($this->key_ign != null):
+            $public_dir = $_SERVER['DOCUMENT_ROOT'];
+            $autoconf_path = getenv('PREVARISC_IGN_AUTOCONF');
+            $autoconf_path = file_exists($public_dir.$autoconf_path) ? $autoconf_path : "";
+        ?>
+            const optionsGeo = {
+                geo_container_id: '',
+                key_ign: '<?= $this->key_ign ?>',
+                default_lat: <?= $this->default_lat ?>,
+                default_lon: <?= $this->default_lon ?>,
+                autoconf_path: '<?= $autoconf_path ?>',
+                couches_cartographiques: <?= json_encode($this->couches_cartographiques) ?>
             }
+        <?php endif ?>
 
-            $('#adresse-modal input').val('');
-            $("#adresse-modal input[name='voie_ac'], #adresse-modal input[name='numero'], #adresse-modal input[name='complement']").val("").attr("disabled", true).blur();
-            $("span.result").text("Inconnu");            
-            $('#geoportail-container').css('visibility', 'hidden');
+        $('#adresse-modal-ajout').on('shown.bs.modal', function () {
+            optionsGeo.geo_container_id = 'geoportail-container'
+            geolocaliseIGN("#adresse-modal-ajout", optionsGeo)
+        })
 
-            // Si une carto est déjà présente, on n'en charge pas une autre
-            if($('#geoportail-container .ol-viewport').length == 0) { 
-                // On empêche le clic sur la géolocalisation jusqu'à ce que la carto soit chargée
-                $('#adresse-modal #geolocme').attr('disabled', true);
-                $('#adresse-modal #geolocme_nominatim').attr('disabled', true);
-                /***** Carte IGN *****/
-                <?php if($this->key_ign != null): ?>
+        $('#adresse-modal-edit').on('shown.bs.modal', function () {
+            optionsGeo.geo_container_id = 'edit-geoportail-container'
+            geolocaliseIGN("#adresse-modal-edit", optionsGeo)
+        })
 
-                    <?php
-                        $public_dir = $_SERVER['DOCUMENT_ROOT'];
-                        $autoconf_path = getenv('PREVARISC_IGN_AUTOCONF');
-                        $autoconf_path = file_exists($public_dir.$autoconf_path) ? $autoconf_path : "";
-                    ?>
-            viewer = initViewer('geoportail-container',
-                                        '<?php echo $this->key_ign ?>',
-                                        [<?php echo $this->default_lon ?>, <?php echo $this->default_lat ?>],
-                                        '<b>Centre par défaut</b>',
-                                        '<?php echo $autoconf_path ?>');
+        function setModalEditAdresseInputValue(data, dataId){
+            //On set les valeurs reçu
+            // Ville
+            $("input[name='commune_ac']").val(data.LIBELLE_COMMUNE)
+            // Voie
+            $("input[name='voie']").val(data.ID_RUE)
+            $("input[name='voie_ac']").removeAttr('disabled')
+            $("input[name='voie_ac']").val(data.LIBELLE_RUE)
 
-                    viewer.listen('mapLoaded', afterInitMap);
-                    //viewer.listen('located', afterPositionLocated);
-                    viewer.listen('azimuthChanged', onRotation);
-                    function afterInitMap () {
-                        // Ajout du bouton FullScreen sur la carte
-                        var fsControl = new ol.control.FullScreen({});
-                        viewer.getLibMap().addControl(fsControl);
+            // Numéro
+            $("input[name='numero']").removeAttr('disabled')
+            $("input[name='numero']").val(data.NUMERO_ADRESSE)
 
-                        // Ajout des couches utilisateur
-                        viewer = addUserLayers(viewer,
-                                               '<?php echo $this->key_ign ?>',
-                                               <?php echo json_encode($this->couches_cartographiques) ?>);
-                        nbCouches = viewer.getLibMap().getLayers().getLength();
+            // Complément d'adresse
+            $("input[name='complement']")
+            $("input[name='complement']").val(data.COMPLEMENT_ADRESSE)
 
-                        // On enlève le marker par défaut, les outils de mesures, et le reset d'orientation
-                        $('.ol-overlay-container').css('display', 'none');
-                        $('div[id^=GPtoolbox-measure-main-]').css('display', 'none');
-                        $('.ol-rotate').css('display', 'none');
+            // Coordonnées
+            $("input[name='lon']").val(data.LON_ETABLISSEMENTADRESSE)
+            $("input[name='lat']").val(data.LAT_ETABLISSEMENTADRESSE)
 
-                        $('#adresse-modal #geolocme').removeAttr('disabled');
-                        $('#adresse-modal #geolocme_nominatim').removeAttr('disabled');
-                    };
-                    /*function afterPositionLocated () {
-                        $("span.result").text("Géolocalisée IGN");
-                        $('#geoportail-container').css('visibility', 'visible');
-                        // Changement des coordonnées et du marker 
-                        lonlat = updateCoordinates([viewer.getCenter().x, viewer.getCenter().y], 'EPSG:3857', 'EPSG:4326');
-                        putMarkerAt(viewer.getLibMap(), lonlat, nbCouches);
-                    };*/
-                    function onRotation () {
-                        viewer.getAzimuth() === 0 ? $('.ol-rotate').css('display', 'none') : $('.ol-rotate').css('display', 'block');
-                    };
-                    viewer.getLibMap().on('singleclick', function(evt) {
-                        lonlat = updateCoordinates(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
-                        putMarkerAt(viewer.getLibMap(), lonlat, nbCouches);
-                    });
+            // Code INSEE
+            $("input[name='code_insee']").val(data.NUMINSEE_COMMUNE)
 
-                    $('#adresse-modal #geolocme').click(function(e) {
-                        e.preventDefault();
-                        var adresse = "";
-                        var numero = $("input[name='numero']").val().trim();
-                        var voie = $("input[name='voie_ac']").val().trim();
-                        var codepostal = $("input[name='code_postal']").val();
-                        var commune = $("input[name='commune_ac']").val().replace(/\(.*\)/g, '');
-                        if (!commune) {
-                            $("span.result").text("Pas de commune renseignée");
-                            return false;
+            // Code Postal
+            $("input[name='code_postal']").val(data.CODEPOSTAL_COMMUNE)
+
+            //Id de l'adrese
+            $("input[name='idAdresse']").val(dataId)
+        }
+
+        function getValueOfNewAdresse(dataId){
+            let data = {}
+                $(`#adresse${dataId} input`).each(idx => {
+                    data[
+                        $(`#adresse${dataId} :input`)[idx].name.split(`ADRESSES[${dataId}]`)[1]
+                        .replaceAll('[','')
+                        .replaceAll(']','')
+                        ]
+                    = $(`#adresse${dataId} :input`)[idx].value
+                })
+                //On recupere le libelle de la commune
+                $.ajax({
+                    type: "get",
+                    url: "/api/1.0/adresse/get_libelle_commune",
+                    data: {code_insee: data.NUMINSEE_COMMUNE},
+                    async: false,
+                    success: function (recieveLibelleCommune) {
+                        data.LIBELLE_COMMUNE = recieveLibelleCommune?.response?.LIBELLE_COMMUNE
+                    }
+                })
+                $.ajax({
+                    type: "get",
+                    url: "/api/1.0/adresse/get_libelle_rue",
+                    data: {idRue: data.ID_RUE},
+                    async: false,
+                    success: function (recieveRue) {
+                        data.LIBELLE_RUE = recieveRue?.response?.LIBELLE_RUE
+                    }
+                })
+            return data
+        }
+
+        function setTriggerEventModalAdresseEdit() {
+            $('.modifierAdresse').click(function (e) {
+                e.preventDefault();
+                const dataId = $(this).attr('data-id')
+
+                $.ajax({
+                    url: "/api/1.0/etablissement/get_adresse?id="+$(this).attr('data-id'),
+                    type: "get",
+                    success: function (result) {
+                        if (result === null) {
+                            setModalEditAdresseInputValue(getValueOfNewAdresse(dataId), dataId)
+                        } else {
+                            setModalEditAdresseInputValue(result.response, dataId)
                         }
-                        if (!voie) {
-                            $("span.result").text("Pas de voie renseignée");
-                            return false;
-                        }
-                        if (numero) {
-                            adresse += numero + ", ";
-                        }
-                        adresse += voie + ", " + codepostal +  ", " + commune;
+                    }
+                })
+            })
+        }
 
-                        $("span.result").text("Géolocalisation en cours...");
-                        /*viewer.setCenter({
-                            location : adresse,
-                            locationType : ['StreetAddress'],
-                            projection : "EPSG:4326"
-                        });*/
-                        geocodeWithJsAutoconf('<?php echo $this->key_ign ?>',
-                                              adresse,
-                                              'StreetAddress',
-                                              'EPSG:4326',
-                                              viewer,
-                                              nbCouches);
+        setTriggerEventModalAdresseEdit()
 
-                        return false;
-                    });
-                <?php endif ?>
-            }
-        });
-        
-        <?php if( $this->geoconcept_url != null): ?>
-                
+        <?php if ($this->geoconcept_url != null): ?>
             <?php if ($token = getenv('PREVARISC_PLUGIN_GEOCONCEPT_TOKEN') && $app_id = getenv('PREVARISC_PLUGIN_GEOCONCEPT_APP_ID')): ?>
                 initGeoConceptKey('<?php echo $app_id ?>', '<?php echo $token ?>');
             <?php endif ?>
-                                
-            var map = initGeoConceptViewer('geoconcept-container', 
+
+            var map = initGeoConceptViewer('geoconcept-container',
                 "<?php echo $this->geoconcept_url ?>",
                 "<?php echo getenv('PREVARISC_PLUGIN_GEOCONCEPT_LAYER') ?>",
                 [{lat: <?php echo $this->default_lat ?>,lon: <?php echo $this->default_lon ?>, description: ""}],
                 <?php echo json_encode($this->couches_cartographiques) ?>,
                 function() {
-                    
+
                     // removes the marker
                     var vectorLayers = map.getLayersByClass('OpenLayers.Layer.Vector');
                     if (vectorLayers !== null && vectorLayers.length > 0) {
@@ -1145,15 +1198,15 @@
                             geoConceptPutMarkerAt(map, map.getLonLatFromViewPortPx(e.xy));
                         }
                     });
-                    
+
                     // création et insertion du nouveau contrôleur
                     map.addControl(new OpenLayers.Control.Click({
                         autoActivate:true
                     }));
                 }
             );
-    
-            $('#adresse-modal #geolocme-geoconcept').click(function(e) {
+
+            $('#geolocme-geoconcept').click(function(e) {
                 e.preventDefault();
                 var geocoderUrl = "<?php echo getenv('PREVARISC_PLUGIN_GEOCONCEPT_GEOCODER') ?>";
                 var adresse = "";
@@ -1193,7 +1246,7 @@
         <?php endif ?>
 
         // Géolocalisation de l'adresse
-        $('#adresse-modal #geolocme_nominatim').click(function() {
+        $('#geolocme_nominatim').click(function() {
             element = $(this);
             $.ajax({
                 url: "//nominatim.openstreetmap.org/search",
@@ -1216,8 +1269,8 @@
                         $("span.result").text("OK");
                         $("input[name='lon']").val(geolocations[0].lon);
                         $("input[name='lat']").val(geolocations[0].lat);
-                        <?php if($this->key_ign != null) : ?>
-                            var map = viewer.getViewer().getMap(); 
+                        <?php if ($this->key_ign != null) : ?>
+                            var map = viewer.getViewer().getMap();
                             var lonlat = new OpenLayers.LonLat(geolocations[0].lon, geolocations[0].lat);
                             lonlat = lonlat.transform('EPSG:4326', map.getProjection());
                             putMarkerAt(map, lonlat, map.getProjection());
@@ -1244,16 +1297,16 @@
 
             return false;
         });
-        
+
         $('input[name=EFFECTIFHABITATION_ETABLISSEMENTINFORMATIONS], input[name=EFFECTIFCARAVANE__ETABLISSEMENTINFORMATIONS], input[name=EFFECTIFEMPLACEMENTNU_ETABLISSEMENTINFORMATIONS], input[name=EFFECTIFDIVERS_ETABLISSEMENTINFORMATIONS]').on('keydown keyup', function() {
             setTotalEmplacementCamping();
-        });        
-        $('input[name=EFFECTIFTOTALCAMPING_ETABLISSEMENTINFORMATIONS').val(setTotalEmplacementCamping());
-        
+        });
+        $('input[name=EFFECTIFTOTALCAMPING_ETABLISSEMENTINFORMATIONS]').val(setTotalEmplacementCamping());
+
     });
-            
+
     function setTotalEmplacementCamping() {
-    
+
         var nbHabitation = parseInt($('input[name=EFFECTIFHABITATION_ETABLISSEMENTINFORMATIONS]').val());
         var nbCaravane = parseInt($('input[name=EFFECTIFCARAVANE__ETABLISSEMENTINFORMATIONS]').val());
         var nbEmplacementNu = parseInt($('input[name=EFFECTIFEMPLACEMENTNU_ETABLISSEMENTINFORMATIONS]').val());
@@ -1263,11 +1316,11 @@
         var nbCaravane = (isNaN(nbCaravane)) ? 0 : nbCaravane;
         var nbEmplacementNu = (isNaN(nbEmplacementNu)) ? 0 : nbEmplacementNu;
         var nbAutre = (isNaN(nbAutre)) ? 0 : nbAutre;
-        
+
         var totalEmplacement = nbHabitation + nbCaravane + nbEmplacementNu + nbAutre;
-                    
-        $('input[name=EFFECTIFTOTALCAMPING_ETABLISSEMENTINFORMATIONS]').val(totalEmplacement);      
-        
+
+        $('input[name=EFFECTIFTOTALCAMPING_ETABLISSEMENTINFORMATIONS]').val(totalEmplacement);
+
         return totalEmplacement;
     }
 </script>

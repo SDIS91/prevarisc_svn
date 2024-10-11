@@ -8,7 +8,7 @@ class DossierController extends Zend_Controller_Action
    // Olivier Regnault : Génération automatisée de la variable $listechamps, effectuée le 22/08/2016 14:13:47
 private $listeChamps = array(
 //Étude
-	//Permis de construire (PC)
+    //Permis de construire (PC)
             "1"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
    //Autorisation de travaux (AT)
             "2"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
@@ -56,18 +56,18 @@ private $listeChamps = array(
             "70"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
    //Retrait de conformité CTS
             "71"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Ajouté par Taoufik le 21/07/20202) debut
-	//Dossier de Demande d'Autorisation Environnementale
+    //Ajouté par Taoufik le 21/07/20202) debut
+    //Dossier de Demande d'Autorisation Environnementale
             "82"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Demande d'enregistrement
+    //Demande d'enregistrement
             "83"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Plan d'intervention
+    //Plan d'intervention
             "84"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Plan d'urbanisme
+    //Plan d'urbanisme
             "85"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Porter à connaissance
+    //Porter à connaissance
             "86"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Autre
+    //Autre
             "87"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
 //Avis prévision :
    //Permis de construire (PC)
@@ -118,29 +118,29 @@ private $listeChamps = array(
             "109"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
    //Retrait de conformité CTS
             "110"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Dossier de Demande d'Autorisation Environnementale
+    //Dossier de Demande d'Autorisation Environnementale
             "111"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Demande d'enregistrement
+    //Demande d'enregistrement
             "112"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Plan d'intervention
+    //Plan d'intervention
             "113"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Plan d'urbanisme
+    //Plan d'urbanisme
             "114"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Porter à connaissance
+    //Porter à connaissance
             "115"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Autre
+    //Autre
             "116"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
-	//Rejet du service instructeur (requete dans la base de données) : ajouter le 08/12/2021 par TM
-	//INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Rejet du service instructeur', '1', 24);
-			"123" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
-			
-	//Arrêté du maire pris sans avis du SDIS: ajouter le 18/02/2022 par TM
-	//INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Arrêté du maire pris sans avis du SDIS', '1', 25);
-			"124" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
-			
+    //Rejet du service instructeur (requete dans la base de données) : ajouter le 08/12/2021 par TM
+    //INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Rejet du service instructeur', '1', 24);
+            "123" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
+            
+    //Arrêté du maire pris sans avis du SDIS: ajouter le 18/02/2022 par TM
+    //INSERT INTO `dossiernatureliste` (`ID_DOSSIERNATURE`, `LIBELLE_DOSSIERNATURE`, `ID_DOSSIERTYPE`, `ORDRE`) VALUES (NULL, 'Arrêté du maire pris sans avis du SDIS', '1', 25);
+            "124" => array("DATEINSERT","OBJET","NUMDOCURBA","DATEMAIRIE","DATESDIS","OBSERVATION", "PREVENTIONNISTE"),
+            
 //Ajouté par Taoufik le 21/07/2020) fin
 //Visite de commission
-	
+    
    //Réception de travaux
             "20"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Périodique
@@ -151,8 +151,8 @@ private $listeChamps = array(
             "24"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Ouverture
             "47"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
-	//visite d'ouverture de boutique
-			"125"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
+    //visite d'ouverture de boutique
+            "125"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Exceptionnelle de levée d'avis défavorable
             "73"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATERVRAT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type", "ABSQUORUM"),
    //Exceptionnelle de levée de sans avis
@@ -173,22 +173,28 @@ private $listeChamps = array(
    //Levée d'avis défavorable
             "75"=> array("AVIS", "AVIS_COMMISSION", "COMMISSION", "DATEINSERT", "DATEVISITE", "NPSP", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),*/
 //Groupe de visite : remplacement du masque suite à la demande de Karine  (Modifié par Taoufik le 22/07/2020)
-	//Réception de travaux
+    //Réception de travaux
             "25"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Périodique
-			"26"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	 //Exceptionnelle
-			"27"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Contrôle
-			"28"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Inopinée
-			"29"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Ouverture
-			"48"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Compte-rendu
-			"117"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+    //Périodique
+            "26"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+     //Exceptionnelle
+            "27"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+    //Contrôle
+            "28"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+    //Inopinée
+            "29"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+    //----------------------------------------
+    //Ajouter le 13/08/2024 par Taoufik pour les dossiers plat'au (ajouter à la base par George)
+    //-----------------------------------------
+    //Déclaration préalable
+            "30" => array("AVIS", "AVIS_COMMISSION", "COMMISSION", "COORDSSI", "DATECOMM", "DATEINSERT", "DATEMAIRIE", "DATEREP", "DATESDIS", "DATESECRETARIAT", "DATESIGN", "DATETRANSFERTCOMM", "DEMANDEUR", "DIFFEREAVIS", "HORSDELAI", "INCOMPLET", "JUSTIFDEROG", "MESURESCOMPENS", "MESURESCOMPLE", "NPSP", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "REGLEDEROG", "SERVICEINSTRUC", "REFCOURRIER", "type", "ABSQUORUM"),
+            
+    //Ouverture
+            "48"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+    //Compte-rendu
+            "117"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
 //Réunion
-	//Compte rendu de réunion
+    //Compte rendu de réunion
             "76"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
     //fin modif 
 //Courrier / Courriel (modifier par Taoufik le 22/07/20202) debut 
@@ -215,7 +221,7 @@ private $listeChamps = array(
    //Demande de visite de réception
             "60"=> array("DATEINSERT", "DATEMAIRIE", "DATEPREF", "DATERECEPTIONCOMM", "DATESDIS", "DATESECRETARIAT", "DEMANDEUR", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "SERVICEINSTRUC", "type"),
 */
-	//Rapport d'organisme agréé
+    //Rapport d'organisme agréé
             "49"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
    //Demande de visite hors programme
             "50"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
@@ -238,7 +244,7 @@ private $listeChamps = array(
    //Demande de visite de réception
             "60"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
    //Information 
-			"118"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
+            "118"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
 //fin
 //Intervention
    //Astreinte Prévention
@@ -247,8 +253,8 @@ private $listeChamps = array(
             "38"=> array("DATEINSERT", "DATEINTERV", "DATESIGN", "DUREEINTERV", "NUMINTERV", "OBJET", "OBSERVATION", "OPERSDIS", "PREVENTIONNISTE", "RCCI", "REX", "type"),
    //Habitat insalubre
             "39"=> array("DATEINSERT", "DATEINTERV", "DATESIGN", "DUREEINTERV", "NUMINTERV", "OBJET", "OBSERVATION", "OPERSDIS", "PREVENTIONNISTE", "RCCI", "REX", "type"),
-	// Etablissements Prévision 
-			 "122"=> array("DATEINSERT", "DATEINTERV", "DATESIGN", "DUREEINTERV", "NUMINTERV", "OBJET", "OBSERVATION", "OPERSDIS", "PREVENTIONNISTE", "RCCI", "REX", "type"),
+    // Etablissements Prévision 
+             "122"=> array("DATEINSERT", "DATEINTERV", "DATESIGN", "DUREEINTERV", "NUMINTERV", "OBJET", "OBSERVATION", "OPERSDIS", "PREVENTIONNISTE", "RCCI", "REX", "type"),
 //Arrêté (modifier par Taoufik le 22/07/20202)
 /* //Ouverture
             "40"=> array("DATEINSERT", "DATEPREF", "DATESDIS", "DATESECRETARIAT", "NUMCHRONO", "NUMDOCURBA", "OBJET", "OBSERVATION", "type"),
@@ -271,11 +277,11 @@ private $listeChamps = array(
             "44"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
    //Courrier
             "45"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Préfectoral
+    //Préfectoral
             "119"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Municipal
+    //Municipal
             "120"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
-	//Autre
+    //Autre
             "121"=> array("DATEINSERT", "DATEREUN", "DEMANDEUR", "OBJET", "OBSERVATION", "PREVENTIONNISTE", "type"),
 //fin
 //A supprimer
@@ -868,17 +874,17 @@ private $listeChamps = array(
         $this->ajoutdocAction($this->id_dossier);
     }
 
-	public function formdocmanquantAction()
-	{
-		$dbDocManquant = new Model_DbTable_DocManquant();
-		//Si on passe un id dossier en param alors on cherche le dernier champ doc manquant si il existe
-		//On recupere la liste des documents manquant type
-		$this->view->listeDoc = $dbDocManquant->getDocManquant();
-		$this->view->numDocManquant = $this->_getParam('numDoc');
+    public function formdocmanquantAction()
+    {
+        $dbDocManquant = new Model_DbTable_DocManquant();
+        //Si on passe un id dossier en param alors on cherche le dernier champ doc manquant si il existe
+        //On recupere la liste des documents manquant type
+        $this->view->listeDoc = $dbDocManquant->getDocManquant();
+        $this->view->numDocManquant = $this->_getParam('numDoc');
 
         $date = Zend_Date::now();
         $this->view->dateDay = $date->get(Zend_Date::DAY_SHORT."/".Zend_Date::MONTH."/".Zend_Date::YEAR);
-	}
+    }
 
     public function savenewAction()
     {
@@ -1026,9 +1032,9 @@ private $listeChamps = array(
                     $nouveauDossier->SERVICEINSTRUC_DOSSIER = $this->_getParam("servInstVille");
                 }
             }
-			$test = $DBdossier->find($this->_getParam('idDossier'))->current();
+            $test = $DBdossier->find($this->_getParam('idDossier'))->current();
             // Added by george: renseigner la reference courrier lors de la creation
-			//modifié par Taoufik le 22/09/2020 suite à l'email de Karine pour Ajouter le Numéro Chrono SDIS 91 aux type "Avis de prévision" et "Courrier/courriel"
+            //modifié par Taoufik le 22/09/2020 suite à l'email de Karine pour Ajouter le Numéro Chrono SDIS 91 aux type "Avis de prévision" et "Courrier/courriel"
             if (is_null($test['REFCOURRIER_DOSSIER']) && ($this -> _getParam("TYPE_DOSSIER") == 1 || $this -> _getParam("TYPE_DOSSIER") == 5  || $this -> _getParam("TYPE_DOSSIER") == 9) && !$this -> _getParam("REFCOURRIER_DOSSIER")) {
                 $annee = new Zend_Date();
                 $year = $annee -> get(Zend_Date::YEAR);
@@ -1179,7 +1185,7 @@ private $listeChamps = array(
             if (isset($_POST['docManquant'])) {
                 $docManquantArray = array();
                 $dateDocManquantArray = array();
-				$dateDocManquantRecepArray = array();
+                $dateDocManquantRecepArray = array();
 
                 if (isset($_POST['docManquant'])) {
                     foreach ($_POST['docManquant']  as $libelle => $value) {
@@ -1197,7 +1203,7 @@ private $listeChamps = array(
                     }
                 }
 
-				if (isset($_POST['dateDocManquant'])) {
+                if (isset($_POST['dateDocManquant'])) {
                     foreach ($_POST['dateDocManquant']  as $libelle => $value) {
                         if ($value != "") {
                             array_push($dateDocManquantArray, $value);
@@ -1211,7 +1217,7 @@ private $listeChamps = array(
                 $dbDossDocManquant = new Model_DbTable_DossierDocManquant();
                 $cpt = 0;
                 foreach ($docManquantArray  as $libelle => $value) {
-					$docEnC = $dbDossDocManquant->getDocManquantDossNum($idDossier,$cpt);
+                    $docEnC = $dbDossDocManquant->getDocManquantDossNum($idDossier,$cpt);
 
                     if ($docEnC) {
                         $dossDocManquant = $dbDossDocManquant->find($docEnC['ID_DOCMANQUANT'])->current();
@@ -1220,13 +1226,13 @@ private $listeChamps = array(
                             $dateTab = explode("/",$dateDocManquantArray[$cpt]);
                             $value = $dateTab[2]."-".$dateTab[1]."-".$dateTab[0];
                             $dossDocManquant->DATE_DOCSMANQUANT = $value;
-							if(isset($dateDocManquantRecepArray[$cpt]) && $dateDocManquantRecepArray[$cpt] != NULL && $dateDocManquantRecepArray[$cpt] != ''){
-								$dateTabRecep = explode("/",$dateDocManquantRecepArray[$cpt]);
-								$valueRecep = $dateTabRecep[2]."-".$dateTabRecep[1]."-".$dateTabRecep[0];
-								$dossDocManquant->DATE_RECEPTION_DOC = $valueRecep;
-							}else{
-								$dossDocManquant->DATE_RECEPTION_DOC = NULL;
-							}
+                            if(isset($dateDocManquantRecepArray[$cpt]) && $dateDocManquantRecepArray[$cpt] != NULL && $dateDocManquantRecepArray[$cpt] != ''){
+                                $dateTabRecep = explode("/",$dateDocManquantRecepArray[$cpt]);
+                                $valueRecep = $dateTabRecep[2]."-".$dateTabRecep[1]."-".$dateTabRecep[0];
+                                $dossDocManquant->DATE_RECEPTION_DOC = $valueRecep;
+                            }else{
+                                $dossDocManquant->DATE_RECEPTION_DOC = NULL;
+                            }
                         }
                         $dossDocManquant->save();
                     } elseif (!$docEnC) {
@@ -1238,20 +1244,20 @@ private $listeChamps = array(
                             $dateTab = explode("/",$dateDocManquantArray[$cpt]);
                             $value = $dateTab[2]."-".$dateTab[1]."-".$dateTab[0];
                             $dossDocManquant->DATE_DOCSMANQUANT = $value;
-							if(isset($dateDocManquantRecepArray[$cpt])){
-								$dateTabRecep = explode("/",$dateDocManquantRecepArray[$cpt]);
-								$valueRecep = $dateTabRecep[2]."-".$dateTabRecep[1]."-".$dateTabRecep[0];
-								$dossDocManquant->DATE_RECEPTION_DOC = $valueRecep;
-							}
+                            if(isset($dateDocManquantRecepArray[$cpt])){
+                                $dateTabRecep = explode("/",$dateDocManquantRecepArray[$cpt]);
+                                $valueRecep = $dateTabRecep[2]."-".$dateTabRecep[1]."-".$dateTabRecep[0];
+                                $dossDocManquant->DATE_RECEPTION_DOC = $valueRecep;
+                            }
                         }
                         $dossDocManquant->save();
                     }
 
                     $cpt++;
                 }
-			}
-			$nouveauDossier->INCOMPLET_DOSSIER = $_POST['INCOMPLET_DOSSIER'];
-			$nouveauDossier->save();
+            }
+            $nouveauDossier->INCOMPLET_DOSSIER = $_POST['INCOMPLET_DOSSIER'];
+            $nouveauDossier->save();
 
             //lorsque je crée un nouveau dossier de VP pour un ERP qui a déjà été visité, il faudrait que les « éléments consultés » de base soient les mêmes
             //Sauvegarde des numéro de document d'urbanisme du dossier
@@ -2532,7 +2538,7 @@ private $listeChamps = array(
         $nouvellePJ = $DBpieceJointe->createRow();
         $nouvellePJ->ID_PIECEJOINTE = $this->view->idPieceJointe;
         // Modifications by George : intitule et descriptif personnalises de la piece jointe
-		//Modification faite par Taoufik le 27/08/2020 pour l'incrémenation des PJ
+        //Modification faite par Taoufik le 27/08/2020 pour l'incrémenation des PJ
         $nouvellePJ -> NOM_PIECEJOINTE = $DBpieceJointe->newUserPieceJointe();
         $nouvellePJ -> EXTENSION_PIECEJOINTE = ".odt";
 
@@ -2714,8 +2720,8 @@ private $listeChamps = array(
         }
 
         $this->view->id_dossier = $this->_getParam("id");
-		$DbDossier = new Model_DbTable_Dossier();
-		$this->view->infosDossier = $DbDossier->find((int) $this->view->id_dossier)->current();
+        $DbDossier = new Model_DbTable_Dossier();
+        $this->view->infosDossier = $DbDossier->find((int) $this->view->id_dossier)->current();
 
         //$this->view->prescriptionDossier = $service_dossier->getPrescriptions((int) $this->_getParam("id"));
         $this->view->prescriptionReglDossier = $service_dossier->getPrescriptions((int) $this->_getParam("id"),0);
